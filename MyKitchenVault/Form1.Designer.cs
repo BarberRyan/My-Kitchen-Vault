@@ -54,6 +54,10 @@ namespace MyKitchenVault
             this.comboBox1.AllowDrop = true;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Dairy",
+            "Nuts",
+            "Gluton"});
             this.comboBox1.Location = new System.Drawing.Point(234, 152);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(257, 28);
@@ -64,6 +68,12 @@ namespace MyKitchenVault
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "*****",
+            "****",
+            "***",
+            "**",
+            "*"});
             this.comboBox2.Location = new System.Drawing.Point(497, 152);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(257, 28);
@@ -74,6 +84,12 @@ namespace MyKitchenVault
             // 
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Gluton free ",
+            "Sugar free",
+            "Veggy only",
+            "Keto",
+            ""});
             this.comboBox3.Location = new System.Drawing.Point(234, 186);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(257, 28);
@@ -85,6 +101,10 @@ namespace MyKitchenVault
             // 
             this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "Breakfast",
+            "Lunch ",
+            "Dinner"});
             this.comboBox4.Location = new System.Drawing.Point(497, 186);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(257, 28);
