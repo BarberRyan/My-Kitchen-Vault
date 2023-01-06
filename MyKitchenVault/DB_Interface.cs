@@ -11,7 +11,7 @@ namespace MyKitchenVault
 {
     public static class DB_Interface
     {
-        private static SqlConnection conn => new SqlConnection("Server=tcp:goc-mykitchenvault.database.windows.net,1433;Initial Catalog=MyKitchenVault;Persist Security Info=False;User ID=user_admin;Password=p@ssw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        private static SqlConnection conn => new SqlConnection("<CONNECTION STRING REMOVED");
         
         public static string GenerateHash(string password, string salt)
         {
