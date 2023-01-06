@@ -35,7 +35,7 @@ namespace MyKitchenVault
 
                 if(loginInfo.Item3 == LoginStatus.OK)
                 {
-                    //MessageBox.Show($"Logged in as {loginInfo.Item1} with user id {loginInfo.Item2}!!");
+                    MessageBox.Show($"Logged in as {loginInfo.Item1} with user id {loginInfo.Item2}!!");
                     this.Username = loginInfo.Item1;
                     this.User_Id = loginInfo.Item2;
                     this.DialogResult = DialogResult.OK;

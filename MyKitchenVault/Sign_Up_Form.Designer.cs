@@ -36,8 +36,7 @@
             this.password2_box = new System.Windows.Forms.TextBox();
             this.su_sign_up_button = new System.Windows.Forms.Button();
             this.su_cancel_button = new System.Windows.Forms.Button();
-            this.passwordMatchLabel = new System.Windows.Forms.Label();
-            this.UserExistsLabel = new System.Windows.Forms.Label();
+            this.su_ErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // su_username_box
@@ -46,6 +45,7 @@
             this.su_username_box.Name = "su_username_box";
             this.su_username_box.Size = new System.Drawing.Size(156, 20);
             this.su_username_box.TabIndex = 0;
+            this.su_username_box.TextChanged += new System.EventHandler(this.SU_Username_Text_Changed);
             // 
             // label1
             // 
@@ -72,6 +72,7 @@
             this.password1_box.PasswordChar = '●';
             this.password1_box.Size = new System.Drawing.Size(156, 20);
             this.password1_box.TabIndex = 2;
+            this.password1_box.TextChanged += new System.EventHandler(this.Password1_Text_Changed);
             // 
             // label3
             // 
@@ -93,7 +94,7 @@
             // 
             // su_sign_up_button
             // 
-            this.su_sign_up_button.Location = new System.Drawing.Point(51, 151);
+            this.su_sign_up_button.Location = new System.Drawing.Point(48, 207);
             this.su_sign_up_button.Name = "su_sign_up_button";
             this.su_sign_up_button.Size = new System.Drawing.Size(75, 23);
             this.su_sign_up_button.TabIndex = 6;
@@ -104,7 +105,7 @@
             // su_cancel_button
             // 
             this.su_cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.su_cancel_button.Location = new System.Drawing.Point(51, 180);
+            this.su_cancel_button.Location = new System.Drawing.Point(48, 236);
             this.su_cancel_button.Name = "su_cancel_button";
             this.su_cancel_button.Size = new System.Drawing.Size(75, 23);
             this.su_cancel_button.TabIndex = 7;
@@ -112,27 +113,16 @@
             this.su_cancel_button.UseVisualStyleBackColor = true;
             this.su_cancel_button.Click += new System.EventHandler(this.su_cancel_button_Click);
             // 
-            // passwordMatchLabel
+            // su_ErrorLabel
             // 
-            this.passwordMatchLabel.AutoSize = true;
-            this.passwordMatchLabel.ForeColor = System.Drawing.Color.Red;
-            this.passwordMatchLabel.Location = new System.Drawing.Point(32, 127);
-            this.passwordMatchLabel.Name = "passwordMatchLabel";
-            this.passwordMatchLabel.Size = new System.Drawing.Size(118, 13);
-            this.passwordMatchLabel.TabIndex = 8;
-            this.passwordMatchLabel.Text = "Passwords must match.";
-            this.passwordMatchLabel.Visible = false;
-            // 
-            // UserExistsLabel
-            // 
-            this.UserExistsLabel.AutoSize = true;
-            this.UserExistsLabel.ForeColor = System.Drawing.Color.Red;
-            this.UserExistsLabel.Location = new System.Drawing.Point(41, 127);
-            this.UserExistsLabel.Name = "UserExistsLabel";
-            this.UserExistsLabel.Size = new System.Drawing.Size(100, 13);
-            this.UserExistsLabel.TabIndex = 9;
-            this.UserExistsLabel.Text = "User Already Exists!";
-            this.UserExistsLabel.Visible = false;
+            this.su_ErrorLabel.AutoSize = true;
+            this.su_ErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.su_ErrorLabel.Location = new System.Drawing.Point(32, 127);
+            this.su_ErrorLabel.Name = "su_ErrorLabel";
+            this.su_ErrorLabel.Size = new System.Drawing.Size(118, 13);
+            this.su_ErrorLabel.TabIndex = 8;
+            this.su_ErrorLabel.Text = "Passwords must match.";
+            this.su_ErrorLabel.Visible = false;
             // 
             // Sign_Up_Form
             // 
@@ -140,10 +130,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.su_cancel_button;
-            this.ClientSize = new System.Drawing.Size(189, 213);
+            this.ClientSize = new System.Drawing.Size(182, 276);
             this.ControlBox = false;
-            this.Controls.Add(this.UserExistsLabel);
-            this.Controls.Add(this.passwordMatchLabel);
+            this.Controls.Add(this.su_ErrorLabel);
             this.Controls.Add(this.su_cancel_button);
             this.Controls.Add(this.su_sign_up_button);
             this.Controls.Add(this.label3);
@@ -171,7 +160,6 @@
         private System.Windows.Forms.TextBox password2_box;
         private System.Windows.Forms.Button su_sign_up_button;
         private System.Windows.Forms.Button su_cancel_button;
-        private System.Windows.Forms.Label passwordMatchLabel;
-        private System.Windows.Forms.Label UserExistsLabel;
+        private System.Windows.Forms.Label su_ErrorLabel;
     }
 }
