@@ -21,5 +21,13 @@ namespace MyKitchenVault
         {
 
         }
+
+        private void Log_In_MenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new Login_Form())
+            {
+                var results = form.ShowDialog();
+            }
+        }
     }
 }
