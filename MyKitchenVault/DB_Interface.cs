@@ -11,7 +11,7 @@ namespace MyKitchenVault
 {
     public static class DB_Interface
     {
-        private static SqlConnection conn => new SqlConnection("<CONNECTION STRING REMOVED");
+        private static SqlConnection conn => new SqlConnection("<CONNECTION STRING REMOVED>");
         
         public static string GenerateHash(string password, string salt)
         {
