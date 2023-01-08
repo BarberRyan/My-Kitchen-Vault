@@ -28,8 +28,8 @@ namespace MyKitchenVault
         {
             using (SqlConnection c = new SqlConnection(user_admin_cs))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM users WHERE user_name = @username", c);
-                command.Parameters.AddWithValue("@username", username);
+                SqlCommand command = new SqlCommand($"EXEC check_login @username = @name", c);
+                command.Parameters.AddWithValue("@name", username);
 
                 c.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -62,8 +62,8 @@ namespace MyKitchenVault
             bool result;
             using (SqlConnection c = new SqlConnection(user_admin_cs))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM users WHERE user_name = @username", c);
-                command.Parameters.AddWithValue("@username", username);
+                SqlCommand command = new SqlCommand($"EXEC check_login @username = @name", c);
+                command.Parameters.AddWithValue("@name", username);
                 c.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 result = reader.HasRows;
@@ -82,10 +82,10 @@ namespace MyKitchenVault
                     Random rand = new Random();
                     string salt = rand.Next(1000, 10000).ToString();
                     string passHash = GenerateHash(password, salt);
-                    SqlCommand command = new SqlCommand("INSERT INTO users (user_name, password, salt) VALUES (@username, @password, @salt)", c);
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", passHash);
-                    command.Parameters.AddWithValue("@salt", salt);
+                    SqlCommand command = new SqlCommand("EXEC add_user @username = @u, @passhash = @p, @salt = @s", c);
+                    command.Parameters.AddWithValue("@u", username);
+                    command.Parameters.AddWithValue("@p", passHash);
+                    command.Parameters.AddWithValue("@s", salt);
                     c.Open();
                     command.ExecuteNonQuery();
                 }

@@ -39,7 +39,7 @@ namespace MyKitchenVault
                 if(results == DialogResult.OK)
                 {
                     user = new User(form.Username, form.User_Id);
-                    MessageBox.Show($"Successfully signed in as {user.GetUsername()}");
+                    MessageBox.Show($"Successfully signed in as {user.GetUsername()}.");
                     UsernameLabel.Text = ($"Signed in as {user.GetUsername()} (user id # {user.GetUserID()}).");
                     foreach (Control item in this.Controls)
                     {

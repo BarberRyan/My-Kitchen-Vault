@@ -52,6 +52,11 @@ namespace MyKitchenVault
             using (var form = new Sign_Up_Form())
             {
                 var result = form.ShowDialog();
+                if(result == DialogResult.OK)
+                {
+                    username_box.Text = form.username;
+                    password_box.Select();
+                }
             }
         }
     }

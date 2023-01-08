@@ -16,6 +16,9 @@ namespace MyKitchenVault
     public partial class Sign_Up_Form : Form
     {
         private string errorMsg = "";
+
+        public string username { get; set; }
+
         public Sign_Up_Form()
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace MyKitchenVault
         private void su_cancel_button_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -31,15 +35,20 @@ namespace MyKitchenVault
         {
             if (su_username_box.TextLength > 0 && password1_box.TextLength > 0 && password1_box.Text == password2_box.Text)
             {
-                if (DB_Interface.CheckUserExists(su_username_box.Text))
+                this.username = su_username_box.Text;
+
+                if (DB_Interface.CheckUserExists(this.username))
                 {
-                    su_ErrorLabel.Text = "Username already exists!";
-                    su_ErrorLabel.Visible = true;
+                    MessageBox.Show($"A user with the name \"{this.username}\" already exists.", "Error", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    DB_Interface.CreateUser(su_username_box.Text, password1_box.Text);
-                    MessageBox.Show("USER CREATED!");
+                    if(DB_Interface.CreateUser(this.username, password1_box.Text))
+                    { 
+                        MessageBox.Show($"Welcome to My Kitchen Vault, {this.username}!", "User Created!", MessageBoxButtons.OK);
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
             }
         }
