@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -9,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace MyKitchenVault
 {
-    public static class DB_Interface
+    public class DB_Interface
     {
+        static string user_admin_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_Admin_CS"].ConnectionString;
+        static string user_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_CS"].ConnectionString;
         
         public static string GenerateHash(string password, string salt)
         {
@@ -22,7 +26,7 @@ namespace MyKitchenVault
         
         public static (string, int, LoginStatus) CheckLogin(string username, string password)
         {
-            using (SqlConnection c = new SqlConnection(Connections.UserAdminCS))
+            using (SqlConnection c = new SqlConnection(user_admin_cs))
             {
                 SqlCommand command = new SqlCommand($"SELECT * FROM users WHERE user_name = @username", c);
                 command.Parameters.AddWithValue("@username", username);
@@ -56,7 +60,7 @@ namespace MyKitchenVault
         public static bool CheckUserExists(string username)
         {
             bool result;
-            using (SqlConnection c = new SqlConnection(Connections.UserAdminCS))
+            using (SqlConnection c = new SqlConnection(user_admin_cs))
             {
                 SqlCommand command = new SqlCommand($"SELECT * FROM users WHERE user_name = @username", c);
                 command.Parameters.AddWithValue("@username", username);
@@ -73,7 +77,7 @@ namespace MyKitchenVault
         {
             if (!CheckUserExists(username))
             {
-                using (SqlConnection c = new SqlConnection(Connections.UserAdminCS))
+                using (SqlConnection c = new SqlConnection(user_admin_cs))
                 {
                     Random rand = new Random();
                     string salt = rand.Next(1000, 10000).ToString();

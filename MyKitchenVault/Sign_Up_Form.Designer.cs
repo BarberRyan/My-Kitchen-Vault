@@ -115,13 +115,13 @@
             // 
             // su_ErrorLabel
             // 
-            this.su_ErrorLabel.AutoSize = true;
             this.su_ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.su_ErrorLabel.Location = new System.Drawing.Point(32, 127);
+            this.su_ErrorLabel.Location = new System.Drawing.Point(12, 127);
             this.su_ErrorLabel.Name = "su_ErrorLabel";
-            this.su_ErrorLabel.Size = new System.Drawing.Size(118, 13);
+            this.su_ErrorLabel.Size = new System.Drawing.Size(156, 77);
             this.su_ErrorLabel.TabIndex = 8;
             this.su_ErrorLabel.Text = "Passwords must match.";
+            this.su_ErrorLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.su_ErrorLabel.Visible = false;
             // 
             // Sign_Up_Form

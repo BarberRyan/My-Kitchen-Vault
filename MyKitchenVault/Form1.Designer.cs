@@ -29,6 +29,7 @@ namespace MyKitchenVault
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -40,18 +41,19 @@ namespace MyKitchenVault
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Log_In_Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.Log_In_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsernameLabel = new System.Windows.Forms.Label();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(234, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(520, 79);
+            this.label1.Size = new System.Drawing.Size(520, 56);
             this.label1.TabIndex = 0;
             this.label1.Text = "My Kitchen Vault";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -211,10 +213,11 @@ namespace MyKitchenVault
             // Log_In_Menu
             // 
             this.Log_In_Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Log_In_MenuItem});
+            this.Log_In_MenuItem,
+            this.logOutToolStripMenuItem});
             this.Log_In_Menu.Name = "Log_In_Menu";
-            this.Log_In_Menu.Size = new System.Drawing.Size(52, 20);
-            this.Log_In_Menu.Text = "Log In";
+            this.Log_In_Menu.Size = new System.Drawing.Size(64, 20);
+            this.Log_In_Menu.Text = "Account";
             // 
             // Log_In_MenuItem
             // 
@@ -223,12 +226,32 @@ namespace MyKitchenVault
             this.Log_In_MenuItem.Text = "Log in";
             this.Log_In_MenuItem.Click += new System.EventHandler(this.Log_In_MenuItem_Click);
             // 
+            // UsernameLabel
+            // 
+            this.UsernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UsernameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UsernameLabel.Location = new System.Drawing.Point(304, 104);
+            this.UsernameLabel.Name = "UsernameLabel";
+            this.UsernameLabel.Size = new System.Drawing.Size(381, 13);
+            this.UsernameLabel.TabIndex = 9;
+            this.UsernameLabel.Text = "(Not signed in)";
+            this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logOutToolStripMenuItem.Text = "Log out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1015, 749);
+            this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.textBox1);
@@ -238,9 +261,10 @@ namespace MyKitchenVault
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "My Kitchen Vault";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -261,6 +285,8 @@ namespace MyKitchenVault
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem Log_In_Menu;
         private System.Windows.Forms.ToolStripMenuItem Log_In_MenuItem;
+        private System.Windows.Forms.Label UsernameLabel;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
     }
 }
 

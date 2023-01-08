@@ -35,7 +35,6 @@ namespace MyKitchenVault
 
                 if(loginInfo.Item3 == LoginStatus.OK)
                 {
-                    MessageBox.Show($"Logged in as {loginInfo.Item1} with user id {loginInfo.Item2}!!");
                     this.Username = loginInfo.Item1;
                     this.User_Id = loginInfo.Item2;
                     this.DialogResult = DialogResult.OK;
@@ -43,10 +42,9 @@ namespace MyKitchenVault
                 }
                 else
                 {
-                    MessageBox.Show("Incorrect username or password.");
+                    MessageBox.Show("Incorrect username or password.", "Error", MessageBoxButtons.OK);
                 }
-
-                }
+            }
         }
 
         private void sign_up_button_Click(object sender, EventArgs e)
