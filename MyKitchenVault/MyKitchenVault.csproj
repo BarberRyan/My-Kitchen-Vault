@@ -55,11 +55,11 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB_Interface.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Mkv_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Mkv_Main.Designer.cs">
+      <DependentUpon>Mkv_Main.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginStatus.cs" />
     <Compile Include="Login_Form.cs">
@@ -77,8 +77,8 @@
       <DependentUpon>Sign_Up_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Mkv_Main.resx">
+      <DependentUpon>Mkv_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>

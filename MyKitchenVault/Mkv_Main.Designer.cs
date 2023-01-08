@@ -1,7 +1,7 @@
 ﻿
 namespace MyKitchenVault
 {
-    partial class Form1
+    partial class Mkv_Main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace MyKitchenVault
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mkv_Main));
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();

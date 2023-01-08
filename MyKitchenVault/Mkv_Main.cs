@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace MyKitchenVault
 {
-    public partial class Form1 : Form
+    public partial class Mkv_Main : Form
     {
         public static User user;
 
-        public Form1()
+        public Mkv_Main()
         {
             InitializeComponent();
             foreach (Control item in this.Controls)
