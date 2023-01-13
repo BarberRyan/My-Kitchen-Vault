@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -16,6 +17,11 @@ namespace MyKitchenVault
         static string user_admin_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_Admin_CS"].ConnectionString;
         static string user_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_CS"].ConnectionString;
         
+
+        /*********
+         * LOGIN *
+         *********/
+
         public static string GenerateHash(string password, string salt)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(password + salt);
@@ -91,6 +97,38 @@ namespace MyKitchenVault
                 }
             }
             return CheckUserExists(username);
+        }
+
+        /**************
+         * ADD RECIPE *
+         **************/
+
+        public static void AddRecipe(Recipe input)
+        {
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand("EXEC add_full_recipe " +
+                                                    "@recipeName= @iName, " +
+                                                    "@recipeDescription= @iDescription, " +
+                                                    "@recipeInstructions= @iInstructions, " +
+                                                    "@recipePrepTime= @iPrepTime, " +
+                                                    "@recipeCookTime= @iCookTime, " +
+                                                    "@userID= @iUserID, " +
+                                                    "@Tags= @iTags, " +
+                                                    "@Ingredients= @iIngredients");
+                command.Parameters.AddWithValue("@iName", input.Name);
+                command.Parameters.AddWithValue("@iDescription", input.Description);
+                command.Parameters.AddWithValue("@iInstructions", input.Instructions);
+                command.Parameters.AddWithValue("@iPrepTime", input.PrepTime);
+                command.Parameters.AddWithValue("@iCookTime", input.CookTime);
+                command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUserID());
+                command.Parameters.AddWithValue("@iTags", input.GetTags());
+                command.Parameters.AddWithValue("@iIngredients", input.GetIngredients());
+
+                c.Open();
+                command.ExecuteNonQuery();
+                c.Close();
+            }
         }
     }
 }
