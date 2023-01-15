@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyKitchenVault
 { 
-    internal class Ingredient
+    public class Ingredient
     {
         public string Name { get; set; }
         public string PluralName { get; set; }

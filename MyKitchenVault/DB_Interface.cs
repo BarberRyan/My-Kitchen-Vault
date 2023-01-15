@@ -34,7 +34,7 @@ namespace MyKitchenVault
         {
             using (SqlConnection c = new SqlConnection(user_admin_cs))
             {
-                SqlCommand command = new SqlCommand($"EXEC check_login @username = @name", c);
+                SqlCommand command = new SqlCommand("EXEC check_login @username = @name", c);
                 command.Parameters.AddWithValue("@name", username);
 
                 c.Open();
