@@ -28,7 +28,7 @@ namespace MyKitchenVault
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
@@ -74,6 +74,11 @@ namespace MyKitchenVault
             {
                 MessageBox.Show("No user signed in.", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
