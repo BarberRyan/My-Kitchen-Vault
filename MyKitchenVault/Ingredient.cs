@@ -13,7 +13,7 @@ namespace MyKitchenVault
         public decimal Quantity { get; set; }
         public string Unit { get; set; }
 
-        public Ingredient(string name, string pluralName, decimal quantity, string unit)
+        public Ingredient(string name, decimal quantity, string unit, string pluralName = null)
         {
             Name = name;
             PluralName = pluralName;
