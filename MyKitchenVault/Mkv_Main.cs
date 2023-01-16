@@ -17,12 +17,11 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            user = new User("Meoco55", 2);
             foreach (Control item in this.Controls)
             {
                 if (!(item is MenuStrip))
                 {
-                    //item.Enabled = false;
+                    item.Enabled = false;
                 }
             }
         }
