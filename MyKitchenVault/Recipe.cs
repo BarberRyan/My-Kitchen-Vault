@@ -35,37 +35,19 @@ namespace MyKitchenVault
         public DataTable GetIngredients()
         {
             DataTable dt = new DataTable();
-            DataColumn newColumn = new DataColumn();
             DataRow row;
 
             //ingredient_name
-            newColumn.ColumnName = "ingredient_name";
-            newColumn.DataType = System.Type.GetType("System.String");
-            dt.Columns.Add(newColumn);
+            dt.Columns.Add("ingredient_name", typeof(string));
 
             //ingredient_plural_name
-            newColumn = new DataColumn
-            {
-                ColumnName = "ingredient_plural_name",
-                DataType = System.Type.GetType("System.String")
-            };
-            dt.Columns.Add(newColumn);
+            dt.Columns.Add("ingredient_plural_name", typeof(string));
 
             //ingredient_qty
-            newColumn = new DataColumn
-            {
-                ColumnName = "ingredient_qty",
-                DataType = System.Type.GetType("System.Decimal")
-            };
-            dt.Columns.Add(newColumn);
+            dt.Columns.Add("ingredient_qty", typeof(decimal));
 
             //ingredient_unit
-            newColumn = new DataColumn
-            {
-                ColumnName = "ingredient_unit",
-                DataType = System.Type.GetType("System.String")
-            };
-            dt.Columns.Add(newColumn);
+            dt.Columns.Add("ingredient_unit", typeof(string));
 
             foreach (Ingredient ing in this.Ingredients)
             {
@@ -87,12 +69,8 @@ namespace MyKitchenVault
             DataRow row;
 
             //tag_name
-            DataColumn newColumn = new DataColumn
-            {
-                ColumnName = "tag_name",
-                DataType = System.Type.GetType("System.String")
-            };
-            dt.Columns.Add(newColumn);
+            dt.Columns.Add("tag_name", typeof(string));
+            
 
             foreach(string tag in this.Tags)
             {

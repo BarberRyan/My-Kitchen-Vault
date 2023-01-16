@@ -16,9 +16,13 @@ namespace MyKitchenVault
         public Ingredient(string name, decimal quantity, string unit, string pluralName = null)
         {
             Name = name;
-            PluralName = pluralName;
             Quantity = quantity;
             Unit = unit;
+            if (pluralName == "NULL")
+            {
+                pluralName = null;
+            }
+            PluralName = pluralName;
         }
     }
 }

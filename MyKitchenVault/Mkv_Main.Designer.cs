@@ -41,8 +41,8 @@ namespace MyKitchenVault
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Log_In_Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.Log_In_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UsernameLabel = new System.Windows.Forms.Label();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsernameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -222,9 +222,16 @@ namespace MyKitchenVault
             // Log_In_MenuItem
             // 
             this.Log_In_MenuItem.Name = "Log_In_MenuItem";
-            this.Log_In_MenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Log_In_MenuItem.Size = new System.Drawing.Size(115, 22);
             this.Log_In_MenuItem.Text = "Log in";
             this.Log_In_MenuItem.Click += new System.EventHandler(this.Log_In_MenuItem_Click);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.logOutToolStripMenuItem.Text = "Log out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // UsernameLabel
             // 
@@ -238,14 +245,7 @@ namespace MyKitchenVault
             this.UsernameLabel.Text = "(Not signed in)";
             this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // logOutToolStripMenuItem
-            // 
-            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.logOutToolStripMenuItem.Text = "Log out";
-            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
-            // 
-            // Form1
+            // Mkv_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,7 +263,7 @@ namespace MyKitchenVault
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Mkv_Main";
             this.Text = "My Kitchen Vault";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

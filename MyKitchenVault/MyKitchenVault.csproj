@@ -79,6 +79,7 @@
     <Compile Include="Sign_Up_Form.Designer.cs">
       <DependentUpon>Sign_Up_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestRecipe.cs" />
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Mkv_Main.resx">
       <DependentUpon>Mkv_Main.cs</DependentUpon>

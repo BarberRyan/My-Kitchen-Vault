@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -115,15 +116,27 @@ namespace MyKitchenVault
                                                     "@recipeCookTime= @iCookTime, " +
                                                     "@userID= @iUserID, " +
                                                     "@Tags= @iTags, " +
-                                                    "@Ingredients= @iIngredients");
+                                                    "@Ingredients= @iIngredients", c);
+
                 command.Parameters.AddWithValue("@iName", input.Name);
                 command.Parameters.AddWithValue("@iDescription", input.Description);
                 command.Parameters.AddWithValue("@iInstructions", input.Instructions);
                 command.Parameters.AddWithValue("@iPrepTime", input.PrepTime);
                 command.Parameters.AddWithValue("@iCookTime", input.CookTime);
                 command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUserID());
-                command.Parameters.AddWithValue("@iTags", input.GetTags());
-                command.Parameters.AddWithValue("@iIngredients", input.GetIngredients());
+
+                SqlParameter param = new SqlParameter("@iTags", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.TagTableType",
+                    Value = input.GetTags()
+                };
+                command.Parameters.Add(param);
+                SqlParameter param2 = new SqlParameter("@iIngredients", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.IngredientTableType",
+                    Value = input.GetIngredients()
+                };
+                command.Parameters.Add(param2);
 
                 c.Open();
                 command.ExecuteNonQuery();
