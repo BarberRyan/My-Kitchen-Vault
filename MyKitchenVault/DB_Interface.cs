@@ -125,18 +125,19 @@ namespace MyKitchenVault
                 command.Parameters.AddWithValue("@iCookTime", input.CookTime);
                 command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUserID());
 
-                SqlParameter param = new SqlParameter("@iTags", SqlDbType.Structured)
+                SqlParameter tagList = new SqlParameter("@iTags", SqlDbType.Structured)
                 {
                     TypeName = "dbo.TagTableType",
                     Value = input.GetTags()
                 };
-                command.Parameters.Add(param);
-                SqlParameter param2 = new SqlParameter("@iIngredients", SqlDbType.Structured)
+                command.Parameters.Add(tagList);
+
+                SqlParameter ingList = new SqlParameter("@iIngredients", SqlDbType.Structured)
                 {
                     TypeName = "dbo.IngredientTableType",
                     Value = input.GetIngredients()
                 };
-                command.Parameters.Add(param2);
+                command.Parameters.Add(ingList);
 
                 c.Open();
                 command.ExecuteNonQuery();
