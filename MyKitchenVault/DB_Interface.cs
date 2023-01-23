@@ -144,5 +144,116 @@ namespace MyKitchenVault
                 c.Close();
             }
         }
+
+        /**********
+         * SEARCH *
+         **********/
+
+        public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, bool partial = true, bool only = false)
+        {
+            StringBuilder sb = new StringBuilder();
+            List<(string, string, int)> results = new List<(string, string, int)>();
+            int param = 0;
+            sb.Append("EXEC search ");
+            if (search != null)
+            {
+                sb.Append($@"@search= @iSearch");
+                param++;
+            }
+            if (includeTags != null)
+            {
+                if (param > 0)
+                {
+                    sb.Append(", ");
+                }
+                if (partial)
+                {
+                    sb.Append($@"@includePartial= @iIncludeTags");
+                }
+                else if (only)
+                {
+                    sb.Append($@"@includeOnly= @iIncludeTags");
+                }
+                else
+                {
+                    sb.Append($@"@includeTags= @iIncludeTags");
+                }
+                param++;
+            }
+            if (excludeTags != null)
+            {
+                if (param > 0)
+                {
+                    sb.Append(", ");
+                }
+                sb.Append($@"@excludeTags= @iExcludeTags");
+            }
+
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand(sb.ToString(), c);
+                if (search != null)
+                {
+                    command.Parameters.AddWithValue("@iSearch", search);
+                }
+                if (includeTags != null)
+                {
+                    command.Parameters.AddWithValue("@iIncludeTags", includeTags);
+                }
+                if (excludeTags != null)
+                {
+                    command.Parameters.AddWithValue("@iExcludeTags", excludeTags);
+                }
+                c.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string name = reader.GetString(0);
+                    string desc = reader.GetString(1);
+                    int id = reader.GetInt32(2);
+
+                    results.Add((name, desc, id));
+                }
+            }
+            return results;
+        }
+        public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, bool partial = true, bool only = false)
+        {
+            return Search(search, ListToString(includeTags), ListToString(excludeTags), partial, only);
+        }
+
+        public static string ListToString(List<string> input)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < input.Count; i++)
+            {
+                if (i > 0)
+                {
+                    sb.Append(", ");
+                }
+                sb.Append(input.ElementAt(i));
+            }
+            return sb.ToString();
+        }
+
+        public static List<string> GetTagList()
+        {
+            List<string> results = new List<string>();
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand("EXEC get_tag_list", c);
+
+                c.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    results.Add(reader.GetString(0));
+                }
+            }
+
+            return results;
+        }
     }
 }
