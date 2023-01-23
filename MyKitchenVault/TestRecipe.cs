@@ -9,6 +9,9 @@ namespace MyKitchenVault
 {
     public class TestRecipe
     {
+
+        //FOR TESTING/DEMO PURPOSES ONLY, DO NOT RUN!
+
         public static void InsertRecipe()
         {
             List<(string, decimal, string, string)> m_Recipes = new List<(string, decimal, string, string)>();
