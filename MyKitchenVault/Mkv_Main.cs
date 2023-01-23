@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace MyKitchenVault
 {
-    public partial class Mkv_Main : Form
+    public partial class SearchBox : Form
     {
         public static User user;
 
-        public Mkv_Main()
+        public SearchBox()
         {
             InitializeComponent();
             foreach (Control item in this.Controls)
@@ -74,11 +74,6 @@ namespace MyKitchenVault
             {
                 MessageBox.Show("No user signed in.", "Error", MessageBoxButtons.OK);
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
