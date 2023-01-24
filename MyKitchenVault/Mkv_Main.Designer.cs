@@ -196,7 +196,7 @@ namespace MyKitchenVault
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.ForeColor = System.Drawing.SystemColors.Info;
             this.panel1.Location = new System.Drawing.Point(315, 359);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.MinimumSize = new System.Drawing.Size(372, 106);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(372, 106);
@@ -223,6 +223,7 @@ namespace MyKitchenVault
             this.MinimumSize = new System.Drawing.Size(1031, 648);
             this.Name = "Mkv_Main";
             this.Text = "My Kitchen Vault";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mkv_Main_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

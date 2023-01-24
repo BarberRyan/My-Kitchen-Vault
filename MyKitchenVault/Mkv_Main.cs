@@ -28,7 +28,7 @@ namespace MyKitchenVault
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
@@ -36,14 +36,14 @@ namespace MyKitchenVault
             using (var form = new Login_Form())
             {
                 var results = form.ShowDialog();
-                if(results == DialogResult.OK)
+                if (results == DialogResult.OK)
                 {
                     user = new User(form.Username, form.User_Id);
                     MessageBox.Show($"Successfully signed in as {user.GetUsername()}.");
                     UsernameLabel.Text = ($"Signed in as {user.GetUsername()} (user id # {user.GetUserID()}).");
                     foreach (Control item in this.Controls)
                     {
-                        if(!(item is MenuStrip))
+                        if (!(item is MenuStrip))
                         {
                             item.Enabled = true;
                         }
@@ -78,7 +78,17 @@ namespace MyKitchenVault
 
         private void label1_Click(object sender, EventArgs e)
         {
+            {
 
+            }
         }
+
+        private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to close the application?", "Close Application", MessageBoxButtons.YesNo) == DialogResult.No)
+                e.Cancel = true;
+        }
+      
     }
+
 }
