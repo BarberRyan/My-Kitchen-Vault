@@ -80,5 +80,10 @@ namespace MyKitchenVault
         {
             textBox1.Text = string.Empty;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" Are you sure you want to clear "," Clear Screen ",MessageBoxButtons.YesNo);
+        }
     }
 }
