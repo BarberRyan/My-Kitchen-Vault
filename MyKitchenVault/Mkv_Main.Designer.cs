@@ -85,6 +85,7 @@ namespace MyKitchenVault
             this.textBox1.Size = new System.Drawing.Size(373, 30);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "Recipe Search";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
             // SearchButton
             // 
@@ -137,7 +138,7 @@ namespace MyKitchenVault
             this.LogInMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.LogInMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.LogInMenuItem.Name = "LogInMenuItem";
-            this.LogInMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.LogInMenuItem.Size = new System.Drawing.Size(180, 26);
             this.LogInMenuItem.Text = "Log in";
             this.LogInMenuItem.Click += new System.EventHandler(this.Log_In_MenuItem_Click);
             // 
@@ -146,7 +147,7 @@ namespace MyKitchenVault
             this.LogOutMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.LogOutMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.LogOutMenuItem.Name = "LogOutMenuItem";
-            this.LogOutMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.LogOutMenuItem.Size = new System.Drawing.Size(180, 26);
             this.LogOutMenuItem.Text = "Log out";
             this.LogOutMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 

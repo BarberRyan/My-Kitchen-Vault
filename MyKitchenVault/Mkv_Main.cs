@@ -75,5 +75,10 @@ namespace MyKitchenVault
                 MessageBox.Show("No user signed in.", "Error", MessageBoxButtons.OK);
             }
         }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = string.Empty;
+        }
     }
 }
