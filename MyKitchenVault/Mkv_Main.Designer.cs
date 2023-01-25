@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace MyKitchenVault
 {
-    partial class SearchBox
+    partial class Mkv_Main
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace MyKitchenVault
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchBox));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mkv_Main));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
