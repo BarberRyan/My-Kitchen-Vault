@@ -20,13 +20,12 @@ namespace MyKitchenVault
             DisableControls();
         }
 
-
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new Login_Form())
             {
                 var results = form.ShowDialog();
-                if(results == DialogResult.OK)
+                if (results == DialogResult.OK)
                 {
                     user = new User(form.Username, form.User_Id);
                     MessageBox.Show($"Successfully signed in as {user.GetUsername()}.");
@@ -73,12 +72,20 @@ namespace MyKitchenVault
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = string.Empty;
+          textBox1.Text = string.Empty;
+        }
+
+        private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to close the application?", "Close Application", MessageBoxButtons.YesNo) == DialogResult.No)
+                e.Cancel = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(" Are you sure you want to clear "," Clear Screen ",MessageBoxButtons.YesNo);
+            MessageBox.Show(" Are you sure you want to clear "," Clear Screen ", MessageBoxButtons.YesNo);
         }
+      
     }
+
 }

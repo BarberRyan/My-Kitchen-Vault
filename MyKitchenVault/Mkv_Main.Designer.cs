@@ -313,6 +313,7 @@ namespace MyKitchenVault
             this.MinimumSize = new System.Drawing.Size(1369, 787);
             this.Name = "SearchBox";
             this.Text = "My Kitchen Vault";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mkv_Main_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
