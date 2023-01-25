@@ -118,7 +118,7 @@ namespace MyKitchenVault
                 command.Parameters.AddWithValue("@iInstructions", input.Instructions);
                 command.Parameters.AddWithValue("@iPrepTime", input.PrepTime);
                 command.Parameters.AddWithValue("@iCookTime", input.CookTime);
-                command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUserID());
+                command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUsername());
 
                 SqlParameter tagList = new SqlParameter("@iTags", SqlDbType.Structured)
                 {

@@ -17,18 +17,7 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            foreach (Control item in this.Controls)
-            {
-                if (!(item is MenuStrip))
-                {
-                    item.Enabled = false;
-                }
-            }
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            DisableControls();
         }
 
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
@@ -36,21 +25,32 @@ namespace MyKitchenVault
             using (var form = new Login_Form())
             {
                 var results = form.ShowDialog();
-                if(results == DialogResult.OK)
+                if (results == DialogResult.OK)
                 {
                     user = new User(form.Username, form.User_Id);
                     MessageBox.Show($"Successfully signed in as {user.GetUsername()}.");
                     UsernameLabel.Text = ($"Signed in as {user.GetUsername()} (user id # {user.GetUserID()}).");
                     foreach (Control item in this.Controls)
                     {
-                        if(!(item is MenuStrip))
-                        {
                             item.Enabled = true;
-                        }
                     }
                 }
             }
         }
+
+        private void DisableControls()
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (!(item is MenuStrip))
+                {
+                    item.Enabled = false;
+                }
+            }
+            RecipesMenu.Enabled = false;
+            SettingsMenu.Enabled = false;
+        }
+
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -61,13 +61,7 @@ namespace MyKitchenVault
                 {
                     user = null;
                     UsernameLabel.Text = "(Not signed in)";
-                    foreach (Control item in this.Controls)
-                    {
-                        if (!(item is MenuStrip))
-                        {
-                            item.Enabled = false;
-                        }
-                    }
+                    DisableControls();
                 }
             }
             else
@@ -75,5 +69,23 @@ namespace MyKitchenVault
                 MessageBox.Show("No user signed in.", "Error", MessageBoxButtons.OK);
             }
         }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+          textBox1.Text = string.Empty;
+        }
+
+        private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to close the application?", "Close Application", MessageBoxButtons.YesNo) == DialogResult.No)
+                e.Cancel = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" Are you sure you want to clear "," Clear Screen ", MessageBoxButtons.YesNo);
+        }
+      
     }
+
 }
