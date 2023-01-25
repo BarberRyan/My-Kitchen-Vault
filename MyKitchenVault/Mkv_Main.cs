@@ -17,13 +17,7 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            foreach (Control item in this.Controls)
-            {
-                if (!(item is MenuStrip))
-                {
-                    item.Enabled = false;
-                }
-            }
+            DisableControls();
         }
 
 
@@ -39,14 +33,25 @@ namespace MyKitchenVault
                     UsernameLabel.Text = ($"Signed in as {user.GetUsername()} (user id # {user.GetUserID()}).");
                     foreach (Control item in this.Controls)
                     {
-                        if(!(item is MenuStrip))
-                        {
                             item.Enabled = true;
-                        }
                     }
                 }
             }
         }
+
+        private void DisableControls()
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (!(item is MenuStrip))
+                {
+                    item.Enabled = false;
+                }
+            }
+            RecipesMenu.Enabled = false;
+            SettingsMenu.Enabled = false;
+        }
+
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -57,13 +62,7 @@ namespace MyKitchenVault
                 {
                     user = null;
                     UsernameLabel.Text = "(Not signed in)";
-                    foreach (Control item in this.Controls)
-                    {
-                        if (!(item is MenuStrip))
-                        {
-                            item.Enabled = false;
-                        }
-                    }
+                    DisableControls();
                 }
             }
             else
