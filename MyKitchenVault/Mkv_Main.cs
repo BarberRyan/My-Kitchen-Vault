@@ -29,10 +29,8 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            //DisableControls();
+            DisableControls();
             GetAutocompleteLists();
-
-            user = new User("Meoco55", 2);
         }
 
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
@@ -77,15 +75,6 @@ namespace MyKitchenVault
             ac_all_tags = DB_Interface.GetTagList();
         }
 
-        private void PrintList(List<string> input)
-        {
-            foreach(string item in input)
-            {
-                Console.WriteLine(item);
-            }
-        }
-
-
         private void LogOutMenuItem_Click(object sender, EventArgs e)
         {
             if (user != null)
@@ -117,7 +106,7 @@ namespace MyKitchenVault
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(" Are you sure you want to clear "," Clear Screen ", MessageBoxButtons.YesNo);
+            MessageBox.Show("Are you sure you want to clear","Clear Screen", MessageBoxButtons.YesNo);
         }
 
         private void FiltersButton_Click(object sender, EventArgs e)
