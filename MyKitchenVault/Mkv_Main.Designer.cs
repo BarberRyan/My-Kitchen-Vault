@@ -24,12 +24,6 @@ namespace MyKitchenVault
             base.Dispose(disposing);
         }
 
-        protected void Mkv_Main_Load(object sender, EventArgs e)
-        {
-            Color color = Color.FromArgb(100, 0, 0, 0);
-            panel1.BackColor = color;
-        }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -40,8 +34,8 @@ namespace MyKitchenVault
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mkv_Main));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SearchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.AccountMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LogInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,11 +45,13 @@ namespace MyKitchenVault
             this.AddRecipeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.IngredientBlacklistMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshAutocompleteListsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.FiltersButton = new System.Windows.Forms.Button();
-            this.SelectButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.selectButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.recipeBox = new System.Windows.Forms.ListBox();
+            this.filterStatusLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,49 +62,47 @@ namespace MyKitchenVault
             this.label1.CausesValidation = false;
             this.label1.Font = new System.Drawing.Font("Lucida Handwriting", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Info;
-            this.label1.Location = new System.Drawing.Point(333, 110);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(250, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(671, 78);
+            this.label1.Size = new System.Drawing.Size(503, 63);
             this.label1.TabIndex = 0;
             this.label1.Text = "My Kitchen Vault";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // searchBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox1.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(420, 198);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(496, 35);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "Recipe Search";
-            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
+            this.searchBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.searchBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.searchBox.Location = new System.Drawing.Point(315, 161);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(373, 26);
+            this.searchBox.TabIndex = 5;
+            this.searchBox.Text = "Recipe Search";
+            this.searchBox.Click += new System.EventHandler(this.SearchBox_Click);
             // 
-            // SearchButton
+            // searchButton
             // 
-            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.AutoSize = true;
-            this.SearchButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SearchButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.SearchButton.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.SearchButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.SearchButton.Location = new System.Drawing.Point(737, 358);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SearchButton.MinimumSize = new System.Drawing.Size(133, 49);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(133, 49);
-            this.SearchButton.TabIndex = 7;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = false;
+            this.searchButton.AutoSize = true;
+            this.searchButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.searchButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.searchButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.searchButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.searchButton.Location = new System.Drawing.Point(344, 291);
+            this.searchButton.MinimumSize = new System.Drawing.Size(100, 40);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(100, 40);
+            this.searchButton.TabIndex = 7;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // menuStrip1
             // 
@@ -120,10 +114,10 @@ namespace MyKitchenVault
             this.RecipesMenu,
             this.SettingsMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.MinimumSize = new System.Drawing.Size(0, 49);
+            this.menuStrip1.MinimumSize = new System.Drawing.Size(0, 40);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1353, 49);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1015, 40);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -134,7 +128,7 @@ namespace MyKitchenVault
             this.LogOutMenuItem});
             this.AccountMenu.ForeColor = System.Drawing.SystemColors.Info;
             this.AccountMenu.Name = "AccountMenu";
-            this.AccountMenu.Size = new System.Drawing.Size(117, 45);
+            this.AccountMenu.Size = new System.Drawing.Size(96, 36);
             this.AccountMenu.Text = "Account";
             // 
             // LogInMenuItem
@@ -142,7 +136,7 @@ namespace MyKitchenVault
             this.LogInMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.LogInMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.LogInMenuItem.Name = "LogInMenuItem";
-            this.LogInMenuItem.Size = new System.Drawing.Size(182, 32);
+            this.LogInMenuItem.Size = new System.Drawing.Size(148, 26);
             this.LogInMenuItem.Text = "Log in";
             this.LogInMenuItem.Click += new System.EventHandler(this.Log_In_MenuItem_Click);
             // 
@@ -151,9 +145,9 @@ namespace MyKitchenVault
             this.LogOutMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.LogOutMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.LogOutMenuItem.Name = "LogOutMenuItem";
-            this.LogOutMenuItem.Size = new System.Drawing.Size(182, 32);
+            this.LogOutMenuItem.Size = new System.Drawing.Size(148, 26);
             this.LogOutMenuItem.Text = "Log out";
-            this.LogOutMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            this.LogOutMenuItem.Click += new System.EventHandler(this.LogOutMenuItem_Click);
             // 
             // RecipesMenu
             // 
@@ -162,7 +156,7 @@ namespace MyKitchenVault
             this.AddRecipeMenuItem});
             this.RecipesMenu.ForeColor = System.Drawing.SystemColors.Info;
             this.RecipesMenu.Name = "RecipesMenu";
-            this.RecipesMenu.Size = new System.Drawing.Size(107, 45);
+            this.RecipesMenu.Size = new System.Drawing.Size(86, 36);
             this.RecipesMenu.Text = "Recipes";
             // 
             // FavoritesMenuItem
@@ -170,7 +164,7 @@ namespace MyKitchenVault
             this.FavoritesMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.FavoritesMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.FavoritesMenuItem.Name = "FavoritesMenuItem";
-            this.FavoritesMenuItem.Size = new System.Drawing.Size(231, 32);
+            this.FavoritesMenuItem.Size = new System.Drawing.Size(185, 26);
             this.FavoritesMenuItem.Text = "Favorites";
             // 
             // AddRecipeMenuItem
@@ -178,16 +172,17 @@ namespace MyKitchenVault
             this.AddRecipeMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.AddRecipeMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.AddRecipeMenuItem.Name = "AddRecipeMenuItem";
-            this.AddRecipeMenuItem.Size = new System.Drawing.Size(231, 32);
+            this.AddRecipeMenuItem.Size = new System.Drawing.Size(185, 26);
             this.AddRecipeMenuItem.Text = "Add  Recipe";
             // 
             // SettingsMenu
             // 
             this.SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.IngredientBlacklistMenuItem});
+            this.IngredientBlacklistMenuItem,
+            this.refreshAutocompleteListsMenuItem});
             this.SettingsMenu.ForeColor = System.Drawing.SystemColors.Info;
             this.SettingsMenu.Name = "SettingsMenu";
-            this.SettingsMenu.Size = new System.Drawing.Size(115, 45);
+            this.SettingsMenu.Size = new System.Drawing.Size(92, 36);
             this.SettingsMenu.Text = "Settings";
             // 
             // IngredientBlacklistMenuItem
@@ -195,8 +190,17 @@ namespace MyKitchenVault
             this.IngredientBlacklistMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.IngredientBlacklistMenuItem.ForeColor = System.Drawing.SystemColors.Info;
             this.IngredientBlacklistMenuItem.Name = "IngredientBlacklistMenuItem";
-            this.IngredientBlacklistMenuItem.Size = new System.Drawing.Size(336, 32);
+            this.IngredientBlacklistMenuItem.Size = new System.Drawing.Size(315, 26);
             this.IngredientBlacklistMenuItem.Text = "Ingredient  Blacklist";
+            // 
+            // refreshAutocompleteListsMenuItem
+            // 
+            this.refreshAutocompleteListsMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.refreshAutocompleteListsMenuItem.ForeColor = System.Drawing.SystemColors.Info;
+            this.refreshAutocompleteListsMenuItem.Name = "refreshAutocompleteListsMenuItem";
+            this.refreshAutocompleteListsMenuItem.Size = new System.Drawing.Size(315, 26);
+            this.refreshAutocompleteListsMenuItem.Text = "Refresh Autocomplete Lists";
+            this.refreshAutocompleteListsMenuItem.Click += new System.EventHandler(this.RefreshAutocompleteListsMenuItem_Click);
             // 
             // UsernameLabel
             // 
@@ -204,10 +208,9 @@ namespace MyKitchenVault
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UsernameLabel.BackColor = System.Drawing.Color.Transparent;
             this.UsernameLabel.ForeColor = System.Drawing.SystemColors.Window;
-            this.UsernameLabel.Location = new System.Drawing.Point(415, 178);
-            this.UsernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UsernameLabel.Location = new System.Drawing.Point(311, 145);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(508, 16);
+            this.UsernameLabel.Size = new System.Drawing.Size(381, 13);
             this.UsernameLabel.TabIndex = 9;
             this.UsernameLabel.Text = "(Not signed in)";
             this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -222,96 +225,107 @@ namespace MyKitchenVault
             this.FiltersButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FiltersButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FiltersButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.FiltersButton.Location = new System.Drawing.Point(595, 274);
-            this.FiltersButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.FiltersButton.MaximumSize = new System.Drawing.Size(133, 49);
-            this.FiltersButton.MinimumSize = new System.Drawing.Size(133, 49);
+            this.FiltersButton.Location = new System.Drawing.Point(451, 197);
+            this.FiltersButton.MaximumSize = new System.Drawing.Size(100, 40);
+            this.FiltersButton.MinimumSize = new System.Drawing.Size(100, 40);
             this.FiltersButton.Name = "FiltersButton";
-            this.FiltersButton.Size = new System.Drawing.Size(133, 49);
+            this.FiltersButton.Size = new System.Drawing.Size(100, 40);
             this.FiltersButton.TabIndex = 11;
             this.FiltersButton.Text = "Filters";
             this.FiltersButton.UseVisualStyleBackColor = false;
+            this.FiltersButton.Click += new System.EventHandler(this.FiltersButton_Click);
             // 
-            // SelectButton
+            // selectButton
             // 
-            this.SelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.selectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectButton.AutoSize = true;
-            this.SelectButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.SelectButton.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.SelectButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.SelectButton.Location = new System.Drawing.Point(595, 597);
-            this.SelectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SelectButton.MaximumSize = new System.Drawing.Size(133, 49);
-            this.SelectButton.MinimumSize = new System.Drawing.Size(133, 49);
-            this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(133, 49);
-            this.SelectButton.TabIndex = 13;
-            this.SelectButton.Text = "Select";
-            this.SelectButton.UseVisualStyleBackColor = false;
+            this.selectButton.AutoSize = true;
+            this.selectButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.selectButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.selectButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.selectButton.Location = new System.Drawing.Point(451, 490);
+            this.selectButton.MaximumSize = new System.Drawing.Size(100, 40);
+            this.selectButton.MinimumSize = new System.Drawing.Size(100, 40);
+            this.selectButton.Name = "selectButton";
+            this.selectButton.Size = new System.Drawing.Size(100, 40);
+            this.selectButton.TabIndex = 13;
+            this.selectButton.Text = "Select";
+            this.selectButton.UseVisualStyleBackColor = false;
             // 
-            // panel1
+            // clearButton
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.ForeColor = System.Drawing.SystemColors.Info;
-            this.panel1.Location = new System.Drawing.Point(420, 442);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.MinimumSize = new System.Drawing.Size(495, 130);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 130);
-            this.panel1.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.button1.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Info;
-            this.button1.Location = new System.Drawing.Point(452, 358);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.MinimumSize = new System.Drawing.Size(133, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 49);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.clearButton.AutoSize = true;
+            this.clearButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.clearButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.clearButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.clearButton.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.clearButton.Location = new System.Drawing.Point(558, 291);
+            this.clearButton.MinimumSize = new System.Drawing.Size(100, 40);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(100, 40);
+            this.clearButton.TabIndex = 15;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = false;
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // SearchBox
+            // recipeBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.recipeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.recipeBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recipeBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.recipeBox.FormattingEnabled = true;
+            this.recipeBox.HorizontalScrollbar = true;
+            this.recipeBox.ItemHeight = 18;
+            this.recipeBox.Location = new System.Drawing.Point(344, 337);
+            this.recipeBox.Name = "recipeBox";
+            this.recipeBox.Size = new System.Drawing.Size(314, 130);
+            this.recipeBox.TabIndex = 16;
+            // 
+            // filterStatusLabel
+            // 
+            this.filterStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterStatusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.filterStatusLabel.ForeColor = System.Drawing.SystemColors.Window;
+            this.filterStatusLabel.Location = new System.Drawing.Point(451, 240);
+            this.filterStatusLabel.Name = "filterStatusLabel";
+            this.filterStatusLabel.Size = new System.Drawing.Size(100, 13);
+            this.filterStatusLabel.TabIndex = 17;
+            this.filterStatusLabel.Text = "Filters Applied";
+            this.filterStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.filterStatusLabel.Visible = false;
+            // 
+            // Mkv_Main
+            // 
+            this.AcceptButton = this.searchButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1353, 750);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.SelectButton);
+            this.ClientSize = new System.Drawing.Size(1015, 609);
+            this.Controls.Add(this.filterStatusLabel);
+            this.Controls.Add(this.recipeBox);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.selectButton);
             this.Controls.Add(this.FiltersButton);
             this.Controls.Add(this.UsernameLabel);
-            this.Controls.Add(this.SearchButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1369, 787);
-            this.Name = "SearchBox";
+            this.MinimumSize = new System.Drawing.Size(1022, 597);
+            this.Name = "Mkv_Main";
             this.Text = "My Kitchen Vault";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mkv_Main_FormClosing);
             this.menuStrip1.ResumeLayout(false);
@@ -324,22 +338,24 @@ namespace MyKitchenVault
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem AccountMenu;
         private System.Windows.Forms.ToolStripMenuItem LogInMenuItem;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.ToolStripMenuItem LogOutMenuItem;
         private System.Windows.Forms.Button FiltersButton;
-        private System.Windows.Forms.Button SelectButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.ToolStripMenuItem RecipesMenu;
         private System.Windows.Forms.ToolStripMenuItem FavoritesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddRecipeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SettingsMenu;
         private System.Windows.Forms.ToolStripMenuItem IngredientBlacklistMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.ToolStripMenuItem refreshAutocompleteListsMenuItem;
+        private System.Windows.Forms.ListBox recipeBox;
+        private System.Windows.Forms.Label filterStatusLabel;
     }
 }
 
