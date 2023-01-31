@@ -10,9 +10,9 @@ namespace MyKitchenVault
 {
     public class DB_Interface
     {
-        static string user_admin_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_Admin_CS"].ConnectionString;
-        static string user_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_CS"].ConnectionString;
-        
+        static readonly string user_admin_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_Admin_CS"].ConnectionString;
+        static readonly string user_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_CS"].ConnectionString;
+
 
         /*********
          * LOGIN *
@@ -25,7 +25,7 @@ namespace MyKitchenVault
             byte[] hash = SHAM.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
-        
+
         public static (string, int, LoginStatus) CheckLogin(string username, string password)
         {
             using (SqlConnection c = new SqlConnection(user_admin_cs))
@@ -45,7 +45,7 @@ namespace MyKitchenVault
                         string passHash = reader.GetString(2);
                         string salt = reader.GetString(3);
 
-                        if(GenerateHash(password, salt) == passHash)
+                        if (GenerateHash(password, salt) == passHash)
                         {
                             return (user_name, user_id, LoginStatus.OK);
                         }
@@ -118,7 +118,7 @@ namespace MyKitchenVault
                 command.Parameters.AddWithValue("@iInstructions", input.Instructions);
                 command.Parameters.AddWithValue("@iPrepTime", input.PrepTime);
                 command.Parameters.AddWithValue("@iCookTime", input.CookTime);
-                command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUsername());
+                command.Parameters.AddWithValue("@iUserID", Mkv_Main.user.GetUserID());
 
                 SqlParameter tagList = new SqlParameter("@iTags", SqlDbType.Structured)
                 {
@@ -214,7 +214,18 @@ namespace MyKitchenVault
         }
         public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, bool partial = true, bool only = false)
         {
-            return Search(search, ListToString(includeTags), ListToString(excludeTags), partial, only);
+            string include = null;
+            string exclude = null;
+            if(includeTags != null)
+            {
+                include = ListToString(includeTags);
+            }
+            if(excludeTags != null)
+            {
+                exclude = ListToString(excludeTags);
+            }
+
+            return Search(search, include, exclude, partial, only);
         }
 
         public static string ListToString(List<string> input)
@@ -249,6 +260,63 @@ namespace MyKitchenVault
             }
 
             return results;
+        }
+
+        public static (List<string>, List<string>, List<string>, List<string>) GetAutocompleteLists()
+        {
+            List<string> ac_recipe_name = new List<string>();
+            List<string> ac_ingredient_name = new List<string>();
+            List<string> ac_ingredient_plural_name = new List<string>();
+            List<string> ac_unit_name = new List<string>();
+
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand("EXEC get_autocomplete_list", c);
+
+                c.Open();
+
+                SqlDataReader reader = command.ExecuteReader();             
+                while (reader.Read())
+                {
+                    try
+                    {
+                        ac_recipe_name.Add(reader.GetString(0));
+                    }
+                    catch { }
+                }
+
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        ac_ingredient_name.Add(reader.GetString(0));
+                    }
+                    catch { }
+                }
+
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        ac_ingredient_plural_name.Add(reader.GetString(0));
+                    }
+                    catch { }
+                }
+
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        ac_unit_name.Add(reader.GetString(0));
+                    }
+                    catch { }
+                }
+
+                return (ac_recipe_name, ac_ingredient_name, ac_ingredient_plural_name, ac_unit_name);
+            }
         }
     }
 }

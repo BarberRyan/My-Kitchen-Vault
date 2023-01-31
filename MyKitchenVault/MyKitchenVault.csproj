@@ -55,8 +55,15 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB_Interface.cs" />
+    <Compile Include="Filters_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters_Form.Designer.cs">
+      <DependentUpon>Filters_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="FractionUtil.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="FilterStyle.cs" />
     <Compile Include="Mkv_Create_Bistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +93,9 @@
       <DependentUpon>Sign_Up_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="Filters_Form.resx">
+      <DependentUpon>Filters_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mkv_Create_Bistro.resx">
       <DependentUpon>Mkv_Create_Bistro.cs</DependentUpon>
     </EmbeddedResource>

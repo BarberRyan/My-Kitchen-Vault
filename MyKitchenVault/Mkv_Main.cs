@@ -13,11 +13,26 @@ namespace MyKitchenVault
     public partial class Mkv_Main : Form
     {
         public static User user;
+        
+        //Autocomplete Lists
+        public static List<string> ac_recipe_name;
+        public static List<string> ac_ingredient_name;
+        public static List<string> ac_ingredient_plural_name;
+        public static List<string> ac_unit_name;
+        public static List<string> ac_all_tags;
+
+        //Filter Tag Options
+        public static List<string> includeTags = null;
+        public static List<string> excludeTags = null;
+        public static FilterStyle filterStyle = FilterStyle.none;
 
         public Mkv_Main()
         {
             InitializeComponent();
-            DisableControls();
+            //DisableControls();
+            GetAutocompleteLists();
+
+            user = new User("Meoco55", 2);
         }
 
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
@@ -51,8 +66,27 @@ namespace MyKitchenVault
             SettingsMenu.Enabled = false;
         }
 
+        private void GetAutocompleteLists()
+        {
+            (List<string>, List<string>, List<string>, List<string>) Lists = DB_Interface.GetAutocompleteLists();
 
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+            ac_recipe_name = Lists.Item1;
+            ac_ingredient_name = Lists.Item2;
+            ac_ingredient_plural_name = Lists.Item3;
+            ac_unit_name = Lists.Item4;
+            ac_all_tags = DB_Interface.GetTagList();
+        }
+
+        private void PrintList(List<string> input)
+        {
+            foreach(string item in input)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+
+        private void LogOutMenuItem_Click(object sender, EventArgs e)
         {
             if (user != null)
             {
@@ -70,9 +104,9 @@ namespace MyKitchenVault
             }
         }
 
-        private void textBox1_Click(object sender, EventArgs e)
+        private void SearchBox_Click(object sender, EventArgs e)
         {
-          textBox1.Text = string.Empty;
+          searchBox.Text = string.Empty;
         }
 
         private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -81,11 +115,89 @@ namespace MyKitchenVault
                 e.Cancel = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" Are you sure you want to clear "," Clear Screen ", MessageBoxButtons.YesNo);
         }
-      
+
+        private void FiltersButton_Click(object sender, EventArgs e)
+        {
+            using (var form = new Filters_Form())
+            {
+                var results = form.ShowDialog();
+                if (results == DialogResult.OK)
+                {
+                    includeTags = form.IncludeTags;
+                    excludeTags = form.ExcludeTags;
+                    filterStyle = form.FilterStyle;
+
+                    CheckForFilters();
+                }
+                else if(results == DialogResult.Cancel)
+                {
+                    includeTags = null;
+                    excludeTags = null;
+                    filterStyle = FilterStyle.none;
+
+                    CheckForFilters();
+                }
+            }
+        }
+
+        private void RefreshAutocompleteListsMenuItem_Click(object sender, EventArgs e)
+        {
+            GetAutocompleteLists();
+        }
+
+        private void CheckForFilters()
+        {
+            if(includeTags != null || excludeTags != null)
+            {
+                filterStatusLabel.Visible = true;
+            }
+            else
+            {
+                filterStatusLabel.Visible = false;
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            recipeBox.Items.Clear();
+
+            bool partial = true;
+            bool only = false;
+            string search = null;
+
+            if(filterStyle == FilterStyle.matchAny)
+            {
+                partial = true;
+            }
+            else if (filterStyle == FilterStyle.includeOnlySelected)
+            {
+                only = true;
+                partial = false;
+            }
+
+            if(searchBox.Text != "Recipe Search")
+            {
+                search = searchBox.Text;
+            }
+
+            List<(string, string, int)> searchResults = DB_Interface.Search(search, includeTags, excludeTags, partial, only);
+
+            if(searchResults.Count > 0)
+            {
+                foreach(var item in searchResults)
+                {
+                    recipeBox.Items.Add($"{item.Item1} - {item.Item2}");
+                }
+            }
+            else
+            {
+                recipeBox.Items.Add("NO RESULTS FOUND");
+            }
+        }
     }
 
 }
