@@ -144,7 +144,7 @@ namespace MyKitchenVault
          * SEARCH *
          **********/
 
-        public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, bool partial = true, bool only = false)
+        public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
         {
             StringBuilder sb = new StringBuilder();
             List<(string, string, int)> results = new List<(string, string, int)>();
@@ -161,11 +161,11 @@ namespace MyKitchenVault
                 {
                     sb.Append(", ");
                 }
-                if (partial)
+                if (filterStyle == FilterStyle.matchAny)
                 {
                     sb.Append($@"@includePartial= @iIncludeTags");
                 }
-                else if (only)
+                else if (filterStyle == FilterStyle.includeOnlySelected)
                 {
                     sb.Append($@"@includeOnly= @iIncludeTags");
                 }
@@ -212,7 +212,7 @@ namespace MyKitchenVault
             }
             return results;
         }
-        public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, bool partial = true, bool only = false)
+        public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
         {
             string include = null;
             string exclude = null;
@@ -225,7 +225,7 @@ namespace MyKitchenVault
                 exclude = ListToString(excludeTags);
             }
 
-            return Search(search, include, exclude, partial, only);
+            return Search(search, include, exclude, filterStyle);
         }
 
         public static string ListToString(List<string> input)

@@ -209,7 +209,14 @@ namespace MyKitchenVault
             {
                 foreach(string tag in Mkv_Main.includeTags)
                 {
-                    includeList.Items.Add(tag);
+                    if (tagList.Contains(tag))
+                    {
+                        includeList.Items.Add(tag);
+                    }
+                    else
+                    {
+                        includeList.Items.Add(tag).ForeColor = Color.Red;
+                    }
                 }
 
                 matchAnyRadio.Enabled = true;

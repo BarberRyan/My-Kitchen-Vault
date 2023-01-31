@@ -102,7 +102,7 @@ namespace MyKitchenVault
             this.searchButton.TabIndex = 7;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // menuStrip1
             // 
