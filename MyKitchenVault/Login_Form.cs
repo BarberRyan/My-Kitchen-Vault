@@ -20,18 +20,28 @@ namespace MyKitchenVault
             InitializeComponent();
         }
 
-        private void cancel_button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Cancels and closes login form (fired when the "cancel" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Dispose();
             this.Close();
         }
 
-        private void sign_in_button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Attempts to sign user in with given credentials (fired when the "sign in" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void SignInButton_Click(object sender, EventArgs e)
         {
-            if(username_box.TextLength > 0 && password_box.TextLength > 0)
+            if(usernameBox.TextLength > 0 && passwordBox.TextLength > 0)
             {
                 (string, int, LoginStatus) loginInfo;
-                loginInfo = DB_Interface.CheckLogin(username_box.Text, password_box.Text);
+                loginInfo = DB_Interface.CheckLogin(usernameBox.Text, passwordBox.Text);
 
                 if(loginInfo.Item3 == LoginStatus.OK)
                 {
@@ -47,15 +57,20 @@ namespace MyKitchenVault
             }
         }
 
-        private void sign_up_button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens "sign up" form (fires when the "sign up" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void SignUpButton_Click(object sender, EventArgs e)
         {
             using (var form = new Sign_Up_Form())
             {
                 var result = form.ShowDialog();
                 if(result == DialogResult.OK)
                 {
-                    username_box.Text = form.username;
-                    password_box.Select();
+                    usernameBox.Text = form.Username;
+                    passwordBox.Select();
                 }
             }
         }

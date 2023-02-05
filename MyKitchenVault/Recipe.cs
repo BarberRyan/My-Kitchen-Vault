@@ -29,6 +29,11 @@ namespace MyKitchenVault
             Tags = tags;
         }
 
+
+        /// <summary>
+        /// Returns a DataTable of all ingredients in the recipe (used for DB entry)
+        /// </summary>
+        /// <returns>DataTable representing ingredients</returns>
         public DataTable GetIngredients()
         {
             DataTable dt = new DataTable();
@@ -60,6 +65,10 @@ namespace MyKitchenVault
 
         }
 
+        /// <summary>
+        /// Returns a DataTable of all tags associated with the recipe (used for DB entry)
+        /// </summary>
+        /// <returns>DataTable representing tags</returns>
         public DataTable GetTags()
         {
             DataTable dt = new DataTable();

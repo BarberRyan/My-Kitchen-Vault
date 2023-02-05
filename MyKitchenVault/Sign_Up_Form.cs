@@ -16,88 +16,97 @@ namespace MyKitchenVault
     public partial class Sign_Up_Form : Form
     {
         private string errorMsg = "";
-
-        public string username { get; set; }
+        public string Username { get; set; }
 
         public Sign_Up_Form()
         {
             InitializeComponent();
         }
 
-        private void su_cancel_button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Cancels and closes the sign up form (fires when the "cancel" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Dispose();
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void su_sign_up_button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Attempts to enter user into the database and gives feedback to the user (fired when the "sign up" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void SignUpButton_Click(object sender, EventArgs e)
         {
-            if (su_username_box.TextLength > 0 && password1_box.TextLength > 0 && password1_box.Text == password2_box.Text)
+            if (usernameBox.TextLength > 0 && passwordBox1.TextLength > 0 && passwordBox1.Text == passwordBox2.Text)
             {
-                this.username = su_username_box.Text;
+                this.Username = usernameBox.Text;
 
-                if (DB_Interface.CheckUserExists(this.username))
+                if (DB_Interface.CheckUserExists(this.Username))
                 {
-                    MessageBox.Show($"A user with the name \"{this.username}\" already exists.", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show($"A user with the name \"{this.Username}\" already exists.", "Error", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if(DB_Interface.CreateUser(this.username, password1_box.Text))
+                    if(DB_Interface.CreateUser(this.Username, passwordBox1.Text))
                     { 
-                        MessageBox.Show($"Welcome to My Kitchen Vault, {this.username}!", "User Created!", MessageBoxButtons.OK);
+                        MessageBox.Show($"Welcome to My Kitchen Vault, {this.Username}!", "User Created!", MessageBoxButtons.OK);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                 }
             }
         }
-        private void SU_Username_Text_Changed(object sender, EventArgs e)
+
+        /// <summary>
+        /// Validates the text in the form's textboxes (fires when the text is changed in any textbox)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void Any_Text_Changed(object sender, EventArgs e)
         {
-            SU_Validate();
+            ValidateInput();
         }
 
-        private void Password1_Text_Changed(object sender, EventArgs e)
-        {
-            SU_Validate();
-        }
-        
-        private void Password2_Text_Changed(object sender, EventArgs e)
-        {
-            SU_Validate();
-        }
-
-        private bool SU_Validate()
+        /// <summary>
+        /// Function to validate the input data and provide feedback to the user
+        /// </summary>
+        /// <returns>Boolean value representing if the form data passes validation</returns>
+        private bool ValidateInput()
         {
             bool valid = true;
-            if(su_username_box.TextLength < 5)
+            if(usernameBox.TextLength < 5)
             {
                 errorMsg = "Username must be\nat least 5 characters long.";
                 valid = false;
             }
-            else if (password1_box.TextLength > 0 && !Regex.IsMatch(password1_box.Text, @"(?=.{6,})(?=(.*\d){1,})(?=(.*\W){1,})"))
+            else if (passwordBox1.TextLength > 0 && !Regex.IsMatch(passwordBox1.Text, @"(?=.{6,})(?=(.*\d){1,})(?=(.*\W){1,})"))
             {
                 errorMsg = "Password must be\nat least 7 characters,\nhave at least 1 number,\nand at least 1 symbol.";
                 valid = false;
             }
-            else if (password2_box.TextLength > 0 && !Regex.IsMatch(password2_box.Text, @"(?=.{6,})(?=(.*\d){1,})(?=(.*\W){1,})"))
+            else if (passwordBox2.TextLength > 0 && !Regex.IsMatch(passwordBox2.Text, @"(?=.{6,})(?=(.*\d){1,})(?=(.*\W){1,})"))
             {
                 errorMsg = "Password must be\nat least 7 characters,\nhave at least 1 number,\nand at least 1 symbol.";
                 valid = false;
             }
-            else if (password1_box.Text != password2_box.Text)
+            else if (passwordBox1.Text != passwordBox2.Text)
             {
                 errorMsg = "Passwords must match.";
                 valid = false;
             }
             if (valid)
             {
-                su_ErrorLabel.Visible = false;
+                errorLabel.Visible = false;
             }
             else
             {
-                su_ErrorLabel.Text = errorMsg;
-                su_ErrorLabel.Visible = true;
+                errorLabel.Text = errorMsg;
+                errorLabel.Visible = true;
             }
             return valid;
         }

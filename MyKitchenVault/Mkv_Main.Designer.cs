@@ -174,6 +174,7 @@ namespace MyKitchenVault
             this.AddRecipeMenuItem.Name = "AddRecipeMenuItem";
             this.AddRecipeMenuItem.Size = new System.Drawing.Size(185, 26);
             this.AddRecipeMenuItem.Text = "Add  Recipe";
+            this.AddRecipeMenuItem.Click += new System.EventHandler(this.AddRecipeMenuItem_Click);
             // 
             // SettingsMenu
             // 

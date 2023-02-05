@@ -10,6 +10,7 @@ namespace MyKitchenVault
 {
     public class DB_Interface
     {
+        //Load connection strings from config file
         static readonly string user_admin_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_Admin_CS"].ConnectionString;
         static readonly string user_cs = System.Configuration.ConfigurationManager.ConnectionStrings["User_CS"].ConnectionString;
 
@@ -18,6 +19,12 @@ namespace MyKitchenVault
          * LOGIN *
          *********/
 
+        /// <summary>
+        /// Generates password hash for password storage and authentication
+        /// </summary>
+        /// <param name="password">Plaintext password to be hashed</param>
+        /// <param name="salt">Value to salt the hash with</param>
+        /// <returns>Hashed password value</returns>
         public static string GenerateHash(string password, string salt)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(password + salt);
@@ -26,6 +33,12 @@ namespace MyKitchenVault
             return Convert.ToBase64String(hash);
         }
 
+        /// <summary>
+        /// Checks username and password against database data
+        /// </summary>
+        /// <param name="username">Username to check</param>
+        /// <param name="password">Password to check</param>
+        /// <returns>Tuple of stored username, user ID number, and LoginStatus object</returns>
         public static (string, int, LoginStatus) CheckLogin(string username, string password)
         {
             using (SqlConnection c = new SqlConnection(user_admin_cs))
@@ -59,6 +72,11 @@ namespace MyKitchenVault
             return ("ERROR", 0, LoginStatus.NotExist);
         }
 
+        /// <summary>
+        /// Checks to see if a username already exists in the database
+        /// </summary>
+        /// <param name="username">Username to check</param>
+        /// <returns>Boolean representing if the user exists or not</returns>
         public static bool CheckUserExists(string username)
         {
             bool result;
@@ -75,6 +93,12 @@ namespace MyKitchenVault
             return result;
         }
 
+        /// <summary>
+        /// Adds a user and password data to the database
+        /// </summary>
+        /// <param name="username">Username to add</param>
+        /// <param name="password">Password to associate with the account</param>
+        /// <returns>Boolean representing if the user exists in the database after creation</returns>
         public static bool CreateUser(string username, string password)
         {
             if (!CheckUserExists(username))
@@ -99,6 +123,10 @@ namespace MyKitchenVault
          * ADD RECIPE *
          **************/
 
+        /// <summary>
+        /// Adds recipe to the database
+        /// </summary>
+        /// <param name="input">Recipe object to add to the database</param>
         public static void AddRecipe(Recipe input)
         {
             using (SqlConnection c = new SqlConnection(user_cs))
@@ -144,6 +172,14 @@ namespace MyKitchenVault
          * SEARCH *
          **********/
 
+        /// <summary>
+        /// Searches database for recipes fitting search and filter criteria (tag lists formatted as strings)
+        /// </summary>
+        /// <param name="search">Search value (searches for any recipes containing this string in name or description)</param>
+        /// <param name="includeTags">List of tags to include in search (as a string)</param>
+        /// <param name="excludeTags">List of tags to exclude in search (as a string)</param>
+        /// <param name="filterStyle">FilterStyle object to determine if recipe needs to include all include tags or any of them</param>
+        /// <returns>Tuple of recipe name, recipe description, and recipe ID</returns>
         public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
         {
             StringBuilder sb = new StringBuilder();
@@ -152,7 +188,7 @@ namespace MyKitchenVault
             sb.Append("EXEC search ");
             if (search != null)
             {
-                sb.Append($@"@search= @iSearch");
+                sb.Append(@"@search= @iSearch");
                 param++;
             }
             if (includeTags != null)
@@ -163,11 +199,7 @@ namespace MyKitchenVault
                 }
                 if (filterStyle == FilterStyle.matchAny)
                 {
-                    sb.Append($@"@includePartial= @iIncludeTags");
-                }
-                else if (filterStyle == FilterStyle.includeOnlySelected)
-                {
-                    sb.Append($@"@includeOnly= @iIncludeTags");
+                    sb.Append(@"@includePartial= @iIncludeTags");
                 }
                 else
                 {
@@ -212,6 +244,15 @@ namespace MyKitchenVault
             }
             return results;
         }
+
+        /// <summary>
+        /// Searches database for recipes fitting search and filter criteria (Override using List instead of String for tags)
+        /// </summary>
+        /// <param name="search">Search value (searches for any recipes containing this string in name or description)</param>
+        /// <param name="includeTags">List of tags to include in search</param>
+        /// <param name="excludeTags">List of tags to exclude in search</param>
+        /// <param name="filterStyle">FilterStyle object to determine if recipe needs to include all include tags or any of them</param>
+        /// <returns>Tuple of recipe name, recipe description, and recipe ID</returns>
         public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
         {
             string include = null;
@@ -228,6 +269,12 @@ namespace MyKitchenVault
             return Search(search, include, exclude, filterStyle);
         }
 
+
+        /// <summary>
+        /// Converts a string list to a comma-separated string
+        /// </summary>
+        /// <param name="input">List to convert</param>
+        /// <returns>String of list items separated by a comma and a space</returns>
         public static string ListToString(List<string> input)
         {
             StringBuilder sb = new StringBuilder();
@@ -242,32 +289,17 @@ namespace MyKitchenVault
             return sb.ToString();
         }
 
-        public static List<string> GetTagList()
-        {
-            List<string> results = new List<string>();
-            using (SqlConnection c = new SqlConnection(user_cs))
-            {
-                SqlCommand command = new SqlCommand("EXEC get_tag_list", c);
-
-                c.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    results.Add(reader.GetString(0));
-                }
-            }
-
-            return results;
-        }
-
-        public static (List<string>, List<string>, List<string>, List<string>) GetAutocompleteLists()
+        /// <summary>
+        /// Gets list data for autocomplete purposes
+        /// </summary>
+        /// <returns>Tuple of recipe name, ingredient name, ingredient plural name, unit name, and all tags (tags + ingredient name/plural name)</returns>
+        public static (List<string>, List<string>, List<string>, List<string>, List<string>) GetAutocompleteLists()
         {
             List<string> ac_recipe_name = new List<string>();
             List<string> ac_ingredient_name = new List<string>();
             List<string> ac_ingredient_plural_name = new List<string>();
             List<string> ac_unit_name = new List<string>();
+            List<string> ac_all_tags = new List<string>();
 
             using (SqlConnection c = new SqlConnection(user_cs))
             {
@@ -315,7 +347,17 @@ namespace MyKitchenVault
                     catch { }
                 }
 
-                return (ac_recipe_name, ac_ingredient_name, ac_ingredient_plural_name, ac_unit_name);
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        ac_all_tags.Add(reader.GetString(0));
+                    }
+                    catch { }
+                }
+
+                return (ac_recipe_name, ac_ingredient_name, ac_ingredient_plural_name, ac_unit_name, ac_all_tags);
             }
         }
     }

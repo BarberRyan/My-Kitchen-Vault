@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyKitchenVault
 {
+    /// <summary>
+    /// Enumerable to represent login status of the user
+    /// </summary>
     public enum LoginStatus
     {
         NotExist,

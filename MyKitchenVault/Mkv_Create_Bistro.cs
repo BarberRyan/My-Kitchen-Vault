@@ -10,39 +10,22 @@ using System.Windows.Forms;
 
 namespace MyKitchenVault
 {
-    public partial class Mkv_Create_Bistro: Form
+    public partial class CreateRecipeForm: Form
     {
-        public Mkv_Create_Bistro()
+        public Recipe CurrentRecipe { get; set; }
+
+
+        public CreateRecipeForm()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void SubmitButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Mkv_Create_Bistro_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
 
         }
