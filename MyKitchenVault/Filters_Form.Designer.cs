@@ -35,7 +35,6 @@
             this.excludeBox = new System.Windows.Forms.TextBox();
             this.matchAnyRadio = new System.Windows.Forms.RadioButton();
             this.matchAllRadio = new System.Windows.Forms.RadioButton();
-            this.includeOnlySelectedRadio = new System.Windows.Forms.RadioButton();
             this.includeRemoveButton = new System.Windows.Forms.Button();
             this.excludeRemoveButton = new System.Windows.Forms.Button();
             this.acceptButton = new System.Windows.Forms.Button();
@@ -114,19 +113,6 @@
             this.matchAllRadio.Text = "Match all";
             this.matchAllRadio.UseVisualStyleBackColor = true;
             this.matchAllRadio.CheckedChanged += new System.EventHandler(this.RadioButtonSelected);
-            // 
-            // includeOnlySelectedRadio
-            // 
-            this.includeOnlySelectedRadio.AutoSize = true;
-            this.includeOnlySelectedRadio.Enabled = false;
-            this.includeOnlySelectedRadio.Location = new System.Drawing.Point(244, 153);
-            this.includeOnlySelectedRadio.Name = "includeOnlySelectedRadio";
-            this.includeOnlySelectedRadio.Size = new System.Drawing.Size(125, 17);
-            this.includeOnlySelectedRadio.TabIndex = 8;
-            this.includeOnlySelectedRadio.TabStop = true;
-            this.includeOnlySelectedRadio.Text = "Include only selected";
-            this.includeOnlySelectedRadio.UseVisualStyleBackColor = true;
-            this.includeOnlySelectedRadio.CheckedChanged += new System.EventHandler(this.RadioButtonSelected);
             // 
             // includeRemoveButton
             // 
@@ -255,7 +241,6 @@
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.excludeRemoveButton);
             this.Controls.Add(this.includeRemoveButton);
-            this.Controls.Add(this.includeOnlySelectedRadio);
             this.Controls.Add(this.matchAllRadio);
             this.Controls.Add(this.matchAnyRadio);
             this.Controls.Add(this.excludeButton);
@@ -278,7 +263,6 @@
         private System.Windows.Forms.TextBox excludeBox;
         private System.Windows.Forms.RadioButton matchAnyRadio;
         private System.Windows.Forms.RadioButton matchAllRadio;
-        private System.Windows.Forms.RadioButton includeOnlySelectedRadio;
         private System.Windows.Forms.Button includeRemoveButton;
         private System.Windows.Forms.Button excludeRemoveButton;
         private System.Windows.Forms.Button acceptButton;

@@ -10,21 +10,28 @@ namespace MyKitchenVault
         public List<string> IncludeTags { get; set; }
         public List<string> ExcludeTags { get; set; }
         public FilterStyle FilterStyle { get; set; }
-        
         public List<string> tagList = Mkv_Main.ac_all_tags;
+        
 
         public Filters_Form()
         {
             InitializeComponent();
 
+            //populate form if filter data is available
             PopulateForm();
 
+            //populate autocomplete lists
             AutoCompleteStringCollection tags = new AutoCompleteStringCollection();
             tags.AddRange(tagList.ToArray());
             includeBox.AutoCompleteCustomSource = tags;
             excludeBox.AutoCompleteCustomSource = tags;
         }
 
+        /// <summary>
+        /// Adds tag to include list (fired when "include tag" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void IncludeButton_Click(object sender, EventArgs e)
         {
             string includeTag = includeBox.Text;
@@ -48,15 +55,19 @@ namespace MyKitchenVault
                 includeBox.Focus();
             }
 
-            if (!matchAnyRadio.Checked && !matchAllRadio.Checked && !includeOnlySelectedRadio.Checked && includeList.Items.Count > 0)
+            if (!matchAnyRadio.Checked && !matchAllRadio.Checked && includeList.Items.Count > 0)
             {
                 matchAnyRadio.Checked = true;
                 matchAnyRadio.Enabled = true;
                 matchAllRadio.Enabled = true;
-                includeOnlySelectedRadio.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Removes tag from include list or shows "no tag selected error" (fired when the "remove selected" button is pressed under the include list)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void IncludeRemoveButton_Click(object sender, EventArgs e)
         {
             if(includeList.SelectedItems.Count > 0)
@@ -77,16 +88,24 @@ namespace MyKitchenVault
                 matchAnyRadio.Enabled = false;
                 matchAllRadio.Checked = false;
                 matchAllRadio.Enabled = false;
-                includeOnlySelectedRadio.Checked = false;
-                includeOnlySelectedRadio.Enabled = false;
             }
         }
 
+        /// <summary>
+        /// Removes "no tag selected" error label on the include list (fired when a tag is selected)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void IncludeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             includeErrorLabel.Visible = false;
         }
 
+        /// <summary>
+        /// Simulates clicking "include tag" button when enter is pressed in the include text box
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void IncludeBoxEnter(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -95,9 +114,14 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Adds tag to exclude list (fired when "exclude tag" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void ExcludeButton_Click(object sender, EventArgs e)
         {
-            string excludeTag = excludeBox.Text;
+            string excludeTag = excludeBox.Text.Trim();
             if (excludeTag.Length > 0 && includeList.FindItemWithText(excludeTag) != null)
             {
                 bothErrorLabel.Visible = true;
@@ -118,6 +142,11 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Removes tag from exclude list or shows "no tag selected error" (fired when the "remove selected" button is pressed under the exclude list)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void ExcludeRemoveButton_Click(object sender, EventArgs e)
         {
             if (excludeList.SelectedItems.Count > 0)
@@ -133,11 +162,21 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Removes "no tag selected" error label on the exclude list (fired when a tag is selected)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void ExcludeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             excludeErrorLabel.Visible = false;
         }
 
+        /// <summary>
+        /// Simulates clicking "exclude tag" button when enter is pressed in the exclude text box
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void ExcludeBoxEnter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -146,6 +185,11 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Submits form and returns filter data (fired when accept button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void AcceptButton_Click(object sender, EventArgs e)
         {
             List<string> include = new List<string>();
@@ -173,6 +217,11 @@ namespace MyKitchenVault
             this.Close();
         }
 
+        /// <summary>
+        /// Cancels the form and clears filter data (fired when cancel button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             var response = MessageBox.Show("Close and clear filters?", "Are you sure?", MessageBoxButtons.YesNo);
@@ -183,6 +232,11 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Updates selected filter style (fired when a radio button is selected)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void RadioButtonSelected(object sender, EventArgs e)
         {
             if (matchAnyRadio.Checked)
@@ -192,17 +246,16 @@ namespace MyKitchenVault
             else if (matchAllRadio.Checked)
             {
                 FilterStyle = FilterStyle.matchAll;
-            }
-            else if (includeOnlySelectedRadio.Checked)
-            {
-                FilterStyle = FilterStyle.includeOnlySelected;
-            }
+            }           
             else
             {
                 FilterStyle = FilterStyle.none;
             }
         }
 
+        /// <summary>
+        /// Fill in selected filters when the form is reopened
+        /// </summary>
         private void PopulateForm()
         {
             if(Mkv_Main.includeTags != null)
@@ -215,13 +268,12 @@ namespace MyKitchenVault
                     }
                     else
                     {
-                        includeList.Items.Add(tag).ForeColor = Color.Red;
+                        includeList.Items.Add(tag).ForeColor = Color.Red; 
                     }
                 }
 
                 matchAnyRadio.Enabled = true;
                 matchAllRadio.Enabled = true;
-                includeOnlySelectedRadio.Enabled = true;
 
                 switch (Mkv_Main.filterStyle)
                 {
@@ -232,10 +284,6 @@ namespace MyKitchenVault
 
                     case FilterStyle.matchAll:
                         matchAllRadio.Checked = true;
-                        break;
-
-                    case FilterStyle.includeOnlySelected:
-                        includeOnlySelectedRadio.Checked = true;
                         break;
                 }
             }

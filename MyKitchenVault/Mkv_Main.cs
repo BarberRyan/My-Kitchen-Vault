@@ -33,6 +33,11 @@ namespace MyKitchenVault
             GetAutocompleteLists();
         }
 
+        /// <summary>
+        /// Opens login menu (fired when "log in" menu item is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new Login_Form())
@@ -48,43 +53,11 @@ namespace MyKitchenVault
             }
         }
 
-        private void DisableControls()
-        {
-            foreach (Control item in this.Controls)
-            {
-                if (!(item is MenuStrip))
-                {
-                    item.Enabled = false;
-                }
-            }
-            RecipesMenu.Enabled = false;
-            SettingsMenu.Enabled = false;
-        }
-
-        private void EnableControls()
-        {
-            foreach (Control item in this.Controls)
-            {
-                if (!(item is MenuStrip))
-                {
-                    item.Enabled = true;
-                }
-            }
-            RecipesMenu.Enabled = true;
-            SettingsMenu.Enabled = true;
-        }
-
-        private void GetAutocompleteLists()
-        {
-            (List<string>, List<string>, List<string>, List<string>) Lists = DB_Interface.GetAutocompleteLists();
-
-            ac_recipe_name = Lists.Item1;
-            ac_ingredient_name = Lists.Item2;
-            ac_ingredient_plural_name = Lists.Item3;
-            ac_unit_name = Lists.Item4;
-            ac_all_tags = DB_Interface.GetTagList();
-        }
-
+        /// <summary>
+        /// Logs out active user (fired when "log out" menu item is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void LogOutMenuItem_Click(object sender, EventArgs e)
         {
             if (user != null)
@@ -103,17 +76,32 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Clears text from search box (fired when search box is clicked) 
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void SearchBox_Click(object sender, EventArgs e)
         {
-          searchBox.Text = string.Empty;
+            searchBox.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Prompts user to ask if they want to close the application (fired when the application is attempting to be closed)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("Do you want to close the application?", "Close Application", MessageBoxButtons.YesNo) == DialogResult.No)
                 e.Cancel = true;
         }
 
+        /// <summary>
+        /// Clears search and filter data from the form (fired when the "clear" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             var response = MessageBox.Show("Are you sure you want to clear?","Clear Search Screen?", MessageBoxButtons.YesNo);
@@ -125,6 +113,11 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Opens the filter form and sets filter information on accepting (fired when "filters" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void FiltersButton_Click(object sender, EventArgs e)
         {
             using (var form = new Filters_Form())
@@ -145,32 +138,21 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Refreshes autocomplete lists (fired when the "refresh autocomplete lists" menu item is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void RefreshAutocompleteListsMenuItem_Click(object sender, EventArgs e)
         {
             GetAutocompleteLists();
         }
 
-        private void CheckForFilters()
-        {
-            if(includeTags != null || excludeTags != null)
-            {
-                filterStatusLabel.Visible = true;
-            }
-            else
-            {
-                filterStatusLabel.Visible = false;
-            }
-        }
-
-        private void ClearFilters()
-        {
-            includeTags = null;
-            excludeTags = null;
-            filterStyle = FilterStyle.none;
-
-            CheckForFilters();
-        }
-
+        /// <summary>
+        /// Performs search based on selected search and filter criteria (fired when the "search" button is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
             recipeBox.Items.Clear();
@@ -195,6 +177,96 @@ namespace MyKitchenVault
             {
                 recipeBox.Items.Add("NO RESULTS FOUND");
             }
+        }
+
+        /// <summary>
+        /// Opens "add recipe" form (fired when the "add recipe" menu item is clicked)
+        /// </summary>
+        /// <param name="sender">Object that fires the event</param>
+        /// <param name="e">Event arguments</param>
+        private void AddRecipeMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new CreateRecipeForm())
+            {
+                var results = form.ShowDialog();
+                if (results == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks for filters and displays or hides the "filters applied" label text as appropriate
+        /// </summary>
+        private void CheckForFilters()
+        {
+            if(includeTags != null || excludeTags != null)
+            {
+                filterStatusLabel.Visible = true;
+            }
+            else
+            {
+                filterStatusLabel.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Clears filter variables
+        /// </summary>
+        private void ClearFilters()
+        {
+            includeTags = null;
+            excludeTags = null;
+            filterStyle = FilterStyle.none;
+
+            CheckForFilters();
+        }
+
+        /// <summary>
+        /// Disables all controls except the "account" menu for when users are not logged in
+        /// </summary>
+        private void DisableControls()
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (!(item is MenuStrip))
+                {
+                    item.Enabled = false;
+                }
+            }
+            RecipesMenu.Enabled = false;
+            SettingsMenu.Enabled = false;
+        }
+
+        /// <summary>
+        /// Enables controls for when users log in
+        /// </summary>
+        private void EnableControls()
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (!(item is MenuStrip))
+                {
+                    item.Enabled = true;
+                }
+            }
+            RecipesMenu.Enabled = true;
+            SettingsMenu.Enabled = true;
+        }
+
+        /// <summary>
+        /// Gets or refreshes lists for autocomplete purposes
+        /// </summary>
+        private void GetAutocompleteLists()
+        {
+            (List<string>, List<string>, List<string>, List<string>, List<string>) Lists = DB_Interface.GetAutocompleteLists();
+
+            ac_recipe_name = Lists.Item1;
+            ac_ingredient_name = Lists.Item2;
+            ac_ingredient_plural_name = Lists.Item3;
+            ac_unit_name = Lists.Item4;
+            ac_all_tags = Lists.Item5;
         }
     }
 

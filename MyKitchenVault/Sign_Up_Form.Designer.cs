@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.su_username_box = new System.Windows.Forms.TextBox();
+            this.usernameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.password1_box = new System.Windows.Forms.TextBox();
+            this.passwordBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.password2_box = new System.Windows.Forms.TextBox();
-            this.su_sign_up_button = new System.Windows.Forms.Button();
-            this.su_cancel_button = new System.Windows.Forms.Button();
-            this.su_ErrorLabel = new System.Windows.Forms.Label();
+            this.passwordBox2 = new System.Windows.Forms.TextBox();
+            this.signUpButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // su_username_box
+            // usernameBox
             // 
-            this.su_username_box.Location = new System.Drawing.Point(12, 24);
-            this.su_username_box.Name = "su_username_box";
-            this.su_username_box.Size = new System.Drawing.Size(156, 20);
-            this.su_username_box.TabIndex = 0;
-            this.su_username_box.TextChanged += new System.EventHandler(this.SU_Username_Text_Changed);
+            this.usernameBox.Location = new System.Drawing.Point(12, 24);
+            this.usernameBox.Name = "usernameBox";
+            this.usernameBox.Size = new System.Drawing.Size(156, 20);
+            this.usernameBox.TabIndex = 0;
+            this.usernameBox.TextChanged += new System.EventHandler(this.Any_Text_Changed);
             // 
             // label1
             // 
@@ -65,14 +65,14 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Password:";
             // 
-            // password1_box
+            // passwordBox1
             // 
-            this.password1_box.Location = new System.Drawing.Point(12, 63);
-            this.password1_box.Name = "password1_box";
-            this.password1_box.PasswordChar = '●';
-            this.password1_box.Size = new System.Drawing.Size(156, 20);
-            this.password1_box.TabIndex = 2;
-            this.password1_box.TextChanged += new System.EventHandler(this.Password1_Text_Changed);
+            this.passwordBox1.Location = new System.Drawing.Point(12, 63);
+            this.passwordBox1.Name = "passwordBox1";
+            this.passwordBox1.PasswordChar = '●';
+            this.passwordBox1.Size = new System.Drawing.Size(156, 20);
+            this.passwordBox1.TabIndex = 2;
+            this.passwordBox1.TextChanged += new System.EventHandler(this.Any_Text_Changed);
             // 
             // label3
             // 
@@ -83,64 +83,64 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Repeat Password:";
             // 
-            // password2_box
+            // passwordBox2
             // 
-            this.password2_box.Location = new System.Drawing.Point(12, 104);
-            this.password2_box.Name = "password2_box";
-            this.password2_box.PasswordChar = '●';
-            this.password2_box.Size = new System.Drawing.Size(156, 20);
-            this.password2_box.TabIndex = 4;
-            this.password2_box.TextChanged += new System.EventHandler(this.Password2_Text_Changed);
+            this.passwordBox2.Location = new System.Drawing.Point(12, 104);
+            this.passwordBox2.Name = "passwordBox2";
+            this.passwordBox2.PasswordChar = '●';
+            this.passwordBox2.Size = new System.Drawing.Size(156, 20);
+            this.passwordBox2.TabIndex = 4;
+            this.passwordBox2.TextChanged += new System.EventHandler(this.Any_Text_Changed);
             // 
-            // su_sign_up_button
+            // signUpButton
             // 
-            this.su_sign_up_button.Location = new System.Drawing.Point(48, 207);
-            this.su_sign_up_button.Name = "su_sign_up_button";
-            this.su_sign_up_button.Size = new System.Drawing.Size(75, 23);
-            this.su_sign_up_button.TabIndex = 6;
-            this.su_sign_up_button.Text = "Sign Up";
-            this.su_sign_up_button.UseVisualStyleBackColor = true;
-            this.su_sign_up_button.Click += new System.EventHandler(this.su_sign_up_button_Click);
+            this.signUpButton.Location = new System.Drawing.Point(48, 207);
+            this.signUpButton.Name = "signUpButton";
+            this.signUpButton.Size = new System.Drawing.Size(75, 23);
+            this.signUpButton.TabIndex = 6;
+            this.signUpButton.Text = "Sign Up";
+            this.signUpButton.UseVisualStyleBackColor = true;
+            this.signUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
-            // su_cancel_button
+            // cancelButton
             // 
-            this.su_cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.su_cancel_button.Location = new System.Drawing.Point(48, 236);
-            this.su_cancel_button.Name = "su_cancel_button";
-            this.su_cancel_button.Size = new System.Drawing.Size(75, 23);
-            this.su_cancel_button.TabIndex = 7;
-            this.su_cancel_button.Text = "Cancel";
-            this.su_cancel_button.UseVisualStyleBackColor = true;
-            this.su_cancel_button.Click += new System.EventHandler(this.su_cancel_button_Click);
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(48, 236);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 7;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // su_ErrorLabel
+            // errorLabel
             // 
-            this.su_ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.su_ErrorLabel.Location = new System.Drawing.Point(12, 127);
-            this.su_ErrorLabel.Name = "su_ErrorLabel";
-            this.su_ErrorLabel.Size = new System.Drawing.Size(156, 77);
-            this.su_ErrorLabel.TabIndex = 8;
-            this.su_ErrorLabel.Text = "Passwords must match.";
-            this.su_ErrorLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.su_ErrorLabel.Visible = false;
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(12, 127);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(156, 77);
+            this.errorLabel.TabIndex = 8;
+            this.errorLabel.Text = "Passwords must match.";
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.errorLabel.Visible = false;
             // 
             // Sign_Up_Form
             // 
-            this.AcceptButton = this.su_sign_up_button;
+            this.AcceptButton = this.signUpButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.su_cancel_button;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(182, 276);
             this.ControlBox = false;
-            this.Controls.Add(this.su_ErrorLabel);
-            this.Controls.Add(this.su_cancel_button);
-            this.Controls.Add(this.su_sign_up_button);
+            this.Controls.Add(this.errorLabel);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.signUpButton);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.password2_box);
+            this.Controls.Add(this.passwordBox2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.password1_box);
+            this.Controls.Add(this.passwordBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.su_username_box);
+            this.Controls.Add(this.usernameBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Sign_Up_Form";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -152,14 +152,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox su_username_box;
+        private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox password1_box;
+        private System.Windows.Forms.TextBox passwordBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox password2_box;
-        private System.Windows.Forms.Button su_sign_up_button;
-        private System.Windows.Forms.Button su_cancel_button;
-        private System.Windows.Forms.Label su_ErrorLabel;
+        private System.Windows.Forms.TextBox passwordBox2;
+        private System.Windows.Forms.Button signUpButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
