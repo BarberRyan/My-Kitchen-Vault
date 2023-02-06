@@ -85,5 +85,10 @@ namespace MyKitchenVault
         {
             MessageBox.Show(" Are you sure you want to clear "," Clear Screen ",MessageBoxButtons.YesNo);
         }
+
+        private void AccountMenu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
