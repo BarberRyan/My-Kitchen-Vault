@@ -46,6 +46,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.excludeErrorLabel = new System.Windows.Forms.Label();
             this.bothErrorLabel = new System.Windows.Forms.Label();
+            this.ratingBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // includeBox
@@ -225,6 +227,32 @@
             this.bothErrorLabel.Text = "Tag cannot be in both boxes!";
             this.bothErrorLabel.Visible = false;
             // 
+            // ratingBox
+            // 
+            this.ratingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ratingBox.FormattingEnabled = true;
+            this.ratingBox.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.ratingBox.Location = new System.Drawing.Point(244, 176);
+            this.ratingBox.Name = "ratingBox";
+            this.ratingBox.Size = new System.Drawing.Size(75, 21);
+            this.ratingBox.TabIndex = 18;
+            this.ratingBox.SelectedIndexChanged += new System.EventHandler(this.RatingBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(241, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Minimum Rating";
+            // 
             // Filters_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,6 +260,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(607, 426);
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ratingBox);
             this.Controls.Add(this.bothErrorLabel);
             this.Controls.Add(this.excludeErrorLabel);
             this.Controls.Add(this.excludeList);
@@ -274,5 +304,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Label excludeErrorLabel;
         private System.Windows.Forms.Label bothErrorLabel;
+        private System.Windows.Forms.ComboBox ratingBox;
+        private System.Windows.Forms.Label label1;
     }
 }

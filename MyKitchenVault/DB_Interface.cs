@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Caching;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MyKitchenVault
 {
@@ -151,14 +153,14 @@ namespace MyKitchenVault
                 SqlParameter tagList = new SqlParameter("@iTags", SqlDbType.Structured)
                 {
                     TypeName = "dbo.TagTableType",
-                    Value = input.GetTags()
+                    Value = input.GetTagTable()
                 };
                 command.Parameters.Add(tagList);
 
                 SqlParameter ingList = new SqlParameter("@iIngredients", SqlDbType.Structured)
                 {
                     TypeName = "dbo.IngredientTableType",
-                    Value = input.GetIngredients()
+                    Value = input.GetIngredientTable()
                 };
                 command.Parameters.Add(ingList);
 
@@ -180,7 +182,7 @@ namespace MyKitchenVault
         /// <param name="excludeTags">List of tags to exclude in search (as a string)</param>
         /// <param name="filterStyle">FilterStyle object to determine if recipe needs to include all include tags or any of them</param>
         /// <returns>Tuple of recipe name, recipe description, and recipe ID</returns>
-        public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
+        public static List<(string, string, int)> Search(string search = null, string includeTags = null, string excludeTags = null, int rating = 0, FilterStyle filterStyle = FilterStyle.none)
         {
             StringBuilder sb = new StringBuilder();
             List<(string, string, int)> results = new List<(string, string, int)>();
@@ -188,7 +190,7 @@ namespace MyKitchenVault
             sb.Append("EXEC search ");
             if (search != null)
             {
-                sb.Append(@"@search= @iSearch");
+                sb.Append("@search= @iSearch");
                 param++;
             }
             if (includeTags != null)
@@ -199,11 +201,11 @@ namespace MyKitchenVault
                 }
                 if (filterStyle == FilterStyle.matchAny)
                 {
-                    sb.Append(@"@includePartial= @iIncludeTags");
+                    sb.Append("@includePartial= @iIncludeTags");
                 }
                 else
                 {
-                    sb.Append($@"@includeTags= @iIncludeTags");
+                    sb.Append("@includeTags= @iIncludeTags");
                 }
                 param++;
             }
@@ -213,9 +215,17 @@ namespace MyKitchenVault
                 {
                     sb.Append(", ");
                 }
-                sb.Append($@"@excludeTags= @iExcludeTags");
+                sb.Append("@excludeTags= @iExcludeTags");
+                param++;
             }
-
+            if (rating != 0)
+            {
+                if (param > 0)
+                {
+                    sb.Append(", ");
+                }
+                sb.Append("@rating= @iRating");
+            }
             using (SqlConnection c = new SqlConnection(user_cs))
             {
                 SqlCommand command = new SqlCommand(sb.ToString(), c);
@@ -230,6 +240,10 @@ namespace MyKitchenVault
                 if (excludeTags != null)
                 {
                     command.Parameters.AddWithValue("@iExcludeTags", excludeTags);
+                }
+                if (rating != 0)
+                {
+                    command.Parameters.AddWithValue("@iRating", rating);
                 }
                 c.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -253,7 +267,7 @@ namespace MyKitchenVault
         /// <param name="excludeTags">List of tags to exclude in search</param>
         /// <param name="filterStyle">FilterStyle object to determine if recipe needs to include all include tags or any of them</param>
         /// <returns>Tuple of recipe name, recipe description, and recipe ID</returns>
-        public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, FilterStyle filterStyle = FilterStyle.none)
+        public static List<(string, string, int)> Search(string search = null, List<string> includeTags = null, List<string> excludeTags = null, int rating = 0, FilterStyle filterStyle = FilterStyle.none)
         {
             string include = null;
             string exclude = null;
@@ -266,9 +280,120 @@ namespace MyKitchenVault
                 exclude = ListToString(excludeTags);
             }
 
-            return Search(search, include, exclude, filterStyle);
+            return Search(search, include, exclude, rating, filterStyle);
         }
 
+        public static (Recipe, decimal) GetRecipe(int recipeID)
+        {
+            string recipeName = "";
+            string recipeDesc = "";
+            string recipeInst = "";
+            string recipeUser = "";
+            decimal recipeRate = 0;
+            int recipeRateCount = 0;
+            decimal userRate = 0;
+            int recipePrep = 0;
+            int recipeCook = 0;
+            List<string> recipeTags = new List<string>();
+            List<Ingredient> recipeIngr = new List<Ingredient>();
+
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {               
+                SqlCommand command = new SqlCommand("EXEC get_recipe @RecipeID=@recipe_id, @UserID=@user_id", c);
+                command.Parameters.AddWithValue("@recipe_id", recipeID);
+                command.Parameters.AddWithValue("@user_id", Mkv_Main.user.GetUserID());
+                
+                c.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                
+                //RECIPE INFO
+
+                while (reader.Read())
+                {
+                    recipeName = reader.GetString(0);
+                    recipeDesc = reader.GetString(1);
+                    recipeInst = reader.GetString(2);
+                    recipePrep = reader.GetInt32(3);
+                    recipeCook = reader.GetInt32(4);
+                }
+
+                //USER
+
+                reader.NextResult();
+
+                while (reader.Read())
+                {
+                    recipeUser = reader.GetString(0);
+                }
+
+                //INGREDIENTS
+                reader.NextResult();
+
+                while (reader.Read())
+                {
+                    string ingName;
+                    string ingPName = null;
+                    decimal ingQty;
+                    string ingUnit; 
+                    
+                    ingName = reader.GetString(0);
+                    try
+                    {
+                        ingPName = reader.GetString(1);
+                    }                    
+                    catch{}
+                    ingQty = reader.GetDecimal(2);
+                    ingUnit = reader.GetString(3);
+                    recipeIngr.Add(new Ingredient(ingName, ingQty, ingUnit, ingPName));
+                }
+
+                //RATING
+                reader.NextResult();
+
+                while (reader.Read())
+                {
+                    recipeRate = reader.GetDecimal(0);
+                    recipeRateCount = reader.GetInt32(1);
+                    userRate = reader.GetDecimal(2);
+                }
+
+                //TAGS
+                reader.NextResult();
+
+                while (reader.Read())
+                {
+                    recipeTags.Add(reader.GetString(0));
+                }
+            }
+
+            Recipe output = new Recipe(recipeID, recipeName, recipeDesc, recipeInst, recipePrep, recipeCook, recipeRate, recipeRateCount, recipeIngr, recipeUser, recipeTags);
+
+            return (output, userRate);                
+        }
+
+        /***********
+         * RATINGS *
+         ***********/
+
+        public static void SetRating(int recipeID, decimal rating)
+        {
+
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand("EXEC new_rating @UserID=@user_id, @RecipeID=@recipe_id, @Rating=@new_rating", c);
+                command.Parameters.AddWithValue("@recipe_id", recipeID);
+                command.Parameters.AddWithValue("@user_id", Mkv_Main.user.GetUserID());
+                command.Parameters.AddWithValue("@new_rating", rating);
+
+                c.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        /*************
+         * UTILITIES *
+         *************/
 
         /// <summary>
         /// Converts a string list to a comma-separated string
