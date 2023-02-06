@@ -12,29 +12,39 @@ namespace MyKitchenVault
         public string Instructions { get; set; }
         public int PrepTime { get; set; }
         public int CookTime { get; set; }
+        public decimal Rating { get; set; }
+        public int RatingCount { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public string UserName { get; set; }
         public List<string> Tags { get; set; }
 
-        public Recipe(string name, string description, string instructions, int prepTime, int cookTime, List<Ingredient> ingredients, string userName, List<string> tags)
+        public Recipe(int recipeID, string name, string description, string instructions, int prepTime, int cookTime, decimal rating, int ratingCount, List<Ingredient> ingredients, string userName, List<string> tags)
         {
-           
+            RecipeID = recipeID;
             Name = name;
             Description = description.Replace(@"\n", Environment.NewLine);
             Instructions = instructions.Replace(@"\n", Environment.NewLine);
             PrepTime = prepTime;
             CookTime = cookTime;
+            Rating = rating;
+            RatingCount = ratingCount;
             Ingredients = ingredients;
             UserName = userName;
             Tags = tags;
         }
 
 
+        public void RefreshRatings((decimal, int, decimal) newRate)
+        {
+            this.Rating = newRate.Item1;
+            this.RatingCount = newRate.Item2;
+        }
+
         /// <summary>
         /// Returns a DataTable of all ingredients in the recipe (used for DB entry)
         /// </summary>
         /// <returns>DataTable representing ingredients</returns>
-        public DataTable GetIngredients()
+        public DataTable GetIngredientTable()
         {
             DataTable dt = new DataTable();
             DataRow row;
@@ -69,7 +79,7 @@ namespace MyKitchenVault
         /// Returns a DataTable of all tags associated with the recipe (used for DB entry)
         /// </summary>
         /// <returns>DataTable representing tags</returns>
-        public DataTable GetTags()
+        public DataTable GetTagTable()
         {
             DataTable dt = new DataTable();
             DataRow row;

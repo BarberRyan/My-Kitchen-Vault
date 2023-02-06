@@ -9,16 +9,20 @@ namespace MyKitchenVault
     {
         public List<string> IncludeTags { get; set; }
         public List<string> ExcludeTags { get; set; }
+        public int rating { get; set; }
         public FilterStyle FilterStyle { get; set; }
         public List<string> tagList = Mkv_Main.ac_all_tags;
         
 
         public Filters_Form()
         {
+            //initialization
             InitializeComponent();
+            ratingBox.SelectedIndex = 0;
 
             //populate form if filter data is available
             PopulateForm();
+
 
             //populate autocomplete lists
             AutoCompleteStringCollection tags = new AutoCompleteStringCollection();
@@ -232,6 +236,12 @@ namespace MyKitchenVault
             }
         }
 
+
+        private void RatingBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rating = ratingBox.SelectedIndex;
+        }
+
         /// <summary>
         /// Updates selected filter style (fired when a radio button is selected)
         /// </summary>
@@ -295,7 +305,13 @@ namespace MyKitchenVault
                     excludeList.Items.Add(tag);
                 }
             }
+
+            if(Mkv_Main.rating != 0)
+            {
+                ratingBox.SelectedIndex = (int)Mkv_Main.rating;
+            }
         }
+
 
     }
 }
