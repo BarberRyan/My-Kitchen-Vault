@@ -90,5 +90,27 @@ namespace MyKitchenVault
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void FavoritesMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddRecipeMenuItem_Click(object sender, EventArgs e)
+        {
+            Mkv_Create_Bistro f2 = new Mkv_Create_Bistro();
+            f2.Show();
+            Visible = false;
+        }
     }
 }
