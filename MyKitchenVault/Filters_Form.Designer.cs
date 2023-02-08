@@ -48,12 +48,15 @@
             this.bothErrorLabel = new System.Windows.Forms.Label();
             this.ratingBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // includeBox
             // 
             this.includeBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.includeBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.includeBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.includeBox.ForeColor = System.Drawing.SystemColors.Info;
             this.includeBox.Location = new System.Drawing.Point(12, 52);
             this.includeBox.Name = "includeBox";
             this.includeBox.Size = new System.Drawing.Size(212, 20);
@@ -62,28 +65,34 @@
             // 
             // includeButton
             // 
+            this.includeButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.includeButton.ForeColor = System.Drawing.SystemColors.Info;
             this.includeButton.Location = new System.Drawing.Point(81, 78);
             this.includeButton.Name = "includeButton";
             this.includeButton.Size = new System.Drawing.Size(75, 23);
             this.includeButton.TabIndex = 2;
             this.includeButton.Text = "Include Tag";
-            this.includeButton.UseVisualStyleBackColor = true;
+            this.includeButton.UseVisualStyleBackColor = false;
             this.includeButton.Click += new System.EventHandler(this.IncludeButton_Click);
             // 
             // excludeButton
             // 
+            this.excludeButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.excludeButton.ForeColor = System.Drawing.SystemColors.Info;
             this.excludeButton.Location = new System.Drawing.Point(456, 78);
             this.excludeButton.Name = "excludeButton";
             this.excludeButton.Size = new System.Drawing.Size(75, 23);
             this.excludeButton.TabIndex = 5;
             this.excludeButton.Text = "Exclude Tag";
-            this.excludeButton.UseVisualStyleBackColor = true;
+            this.excludeButton.UseVisualStyleBackColor = false;
             this.excludeButton.Click += new System.EventHandler(this.ExcludeButton_Click);
             // 
             // excludeBox
             // 
             this.excludeBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.excludeBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.excludeBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.excludeBox.ForeColor = System.Drawing.SystemColors.Info;
             this.excludeBox.Location = new System.Drawing.Point(387, 52);
             this.excludeBox.Name = "excludeBox";
             this.excludeBox.Size = new System.Drawing.Size(212, 20);
@@ -93,73 +102,85 @@
             // matchAnyRadio
             // 
             this.matchAnyRadio.AutoSize = true;
+            this.matchAnyRadio.BackColor = System.Drawing.Color.Transparent;
             this.matchAnyRadio.Enabled = false;
-            this.matchAnyRadio.Location = new System.Drawing.Point(244, 107);
+            this.matchAnyRadio.ForeColor = System.Drawing.SystemColors.Info;
+            this.matchAnyRadio.Location = new System.Drawing.Point(267, 107);
             this.matchAnyRadio.Name = "matchAnyRadio";
             this.matchAnyRadio.Size = new System.Drawing.Size(75, 17);
             this.matchAnyRadio.TabIndex = 6;
             this.matchAnyRadio.TabStop = true;
             this.matchAnyRadio.Text = "Match any";
-            this.matchAnyRadio.UseVisualStyleBackColor = true;
+            this.matchAnyRadio.UseVisualStyleBackColor = false;
             this.matchAnyRadio.CheckedChanged += new System.EventHandler(this.RadioButtonSelected);
             // 
             // matchAllRadio
             // 
             this.matchAllRadio.AutoSize = true;
+            this.matchAllRadio.BackColor = System.Drawing.Color.Transparent;
             this.matchAllRadio.Enabled = false;
-            this.matchAllRadio.Location = new System.Drawing.Point(244, 130);
+            this.matchAllRadio.ForeColor = System.Drawing.SystemColors.Info;
+            this.matchAllRadio.Location = new System.Drawing.Point(267, 130);
             this.matchAllRadio.Name = "matchAllRadio";
-            this.matchAllRadio.Size = new System.Drawing.Size(68, 17);
+            this.matchAllRadio.Size = new System.Drawing.Size(71, 17);
             this.matchAllRadio.TabIndex = 7;
             this.matchAllRadio.TabStop = true;
-            this.matchAllRadio.Text = "Match all";
-            this.matchAllRadio.UseVisualStyleBackColor = true;
+            this.matchAllRadio.Text = " Match all";
+            this.matchAllRadio.UseVisualStyleBackColor = false;
             this.matchAllRadio.CheckedChanged += new System.EventHandler(this.RadioButtonSelected);
             // 
             // includeRemoveButton
             // 
+            this.includeRemoveButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.includeRemoveButton.ForeColor = System.Drawing.SystemColors.Info;
             this.includeRemoveButton.Location = new System.Drawing.Point(68, 364);
             this.includeRemoveButton.Name = "includeRemoveButton";
             this.includeRemoveButton.Size = new System.Drawing.Size(100, 23);
             this.includeRemoveButton.TabIndex = 9;
             this.includeRemoveButton.Text = "Remove Selected";
-            this.includeRemoveButton.UseVisualStyleBackColor = true;
+            this.includeRemoveButton.UseVisualStyleBackColor = false;
             this.includeRemoveButton.Click += new System.EventHandler(this.IncludeRemoveButton_Click);
             // 
             // excludeRemoveButton
             // 
+            this.excludeRemoveButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.excludeRemoveButton.ForeColor = System.Drawing.SystemColors.Info;
             this.excludeRemoveButton.Location = new System.Drawing.Point(439, 364);
             this.excludeRemoveButton.Name = "excludeRemoveButton";
             this.excludeRemoveButton.Size = new System.Drawing.Size(101, 23);
             this.excludeRemoveButton.TabIndex = 10;
             this.excludeRemoveButton.Text = "Remove Selected";
-            this.excludeRemoveButton.UseVisualStyleBackColor = true;
+            this.excludeRemoveButton.UseVisualStyleBackColor = false;
             this.excludeRemoveButton.Click += new System.EventHandler(this.ExcludeRemoveButton_Click);
             // 
             // acceptButton
             // 
+            this.acceptButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.acceptButton.ForeColor = System.Drawing.SystemColors.Info;
             this.acceptButton.Location = new System.Drawing.Point(222, 395);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 11;
             this.acceptButton.Text = "Apply Filters";
-            this.acceptButton.UseVisualStyleBackColor = true;
+            this.acceptButton.UseVisualStyleBackColor = false;
             this.acceptButton.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
             // cancelButton
             // 
+            this.cancelButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cancelButton.ForeColor = System.Drawing.SystemColors.Info;
             this.cancelButton.Location = new System.Drawing.Point(313, 395);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 12;
             this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.UseVisualStyleBackColor = false;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // includeErrorLabel
             // 
             this.includeErrorLabel.AutoSize = true;
-            this.includeErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.includeErrorLabel.ForeColor = System.Drawing.Color.LightPink;
             this.includeErrorLabel.Location = new System.Drawing.Point(72, 390);
             this.includeErrorLabel.Name = "includeErrorLabel";
             this.includeErrorLabel.Size = new System.Drawing.Size(92, 13);
@@ -208,7 +229,7 @@
             // excludeErrorLabel
             // 
             this.excludeErrorLabel.AutoSize = true;
-            this.excludeErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.excludeErrorLabel.ForeColor = System.Drawing.Color.LightPink;
             this.excludeErrorLabel.Location = new System.Drawing.Point(443, 390);
             this.excludeErrorLabel.Name = "excludeErrorLabel";
             this.excludeErrorLabel.Size = new System.Drawing.Size(92, 13);
@@ -219,7 +240,8 @@
             // bothErrorLabel
             // 
             this.bothErrorLabel.AutoSize = true;
-            this.bothErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.bothErrorLabel.BackColor = System.Drawing.Color.Transparent;
+            this.bothErrorLabel.ForeColor = System.Drawing.Color.LightPink;
             this.bothErrorLabel.Location = new System.Drawing.Point(231, 56);
             this.bothErrorLabel.Name = "bothErrorLabel";
             this.bothErrorLabel.Size = new System.Drawing.Size(146, 13);
@@ -229,37 +251,56 @@
             // 
             // ratingBox
             // 
+            this.ratingBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ratingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ratingBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ratingBox.FormattingEnabled = true;
             this.ratingBox.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.ratingBox.Location = new System.Drawing.Point(244, 176);
+            "☆☆☆☆☆",
+            "★☆☆☆☆",
+            "★★☆☆☆",
+            "★★★☆☆",
+            "★★★★☆",
+            "★★★★★"});
+            this.ratingBox.Location = new System.Drawing.Point(267, 176);
             this.ratingBox.Name = "ratingBox";
-            this.ratingBox.Size = new System.Drawing.Size(75, 21);
+            this.ratingBox.Size = new System.Drawing.Size(75, 28);
             this.ratingBox.TabIndex = 18;
-            this.ratingBox.SelectedIndexChanged += new System.EventHandler(this.RatingBox1_SelectedIndexChanged);
+            this.ratingBox.SelectedIndexChanged += new System.EventHandler(this.RatingBox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(241, 160);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.Info;
+            this.label1.Location = new System.Drawing.Point(263, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Minimum Rating";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Lucida Handwriting", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Info;
+            this.label2.Location = new System.Drawing.Point(240, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 41);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Filters";
+            // 
             // Filters_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(607, 426);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ratingBox);
             this.Controls.Add(this.bothErrorLabel);
@@ -306,5 +347,6 @@
         private System.Windows.Forms.Label bothErrorLabel;
         private System.Windows.Forms.ComboBox ratingBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

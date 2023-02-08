@@ -39,6 +39,8 @@
             // 
             // usernameBox
             // 
+            this.usernameBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.usernameBox.ForeColor = System.Drawing.SystemColors.Info;
             this.usernameBox.Location = new System.Drawing.Point(12, 26);
             this.usernameBox.Name = "usernameBox";
             this.usernameBox.Size = new System.Drawing.Size(197, 20);
@@ -47,6 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Info;
             this.label1.Location = new System.Drawing.Point(12, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
@@ -56,6 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Info;
             this.label2.Location = new System.Drawing.Point(12, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
@@ -64,6 +68,8 @@
             // 
             // passwordBox
             // 
+            this.passwordBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.passwordBox.ForeColor = System.Drawing.SystemColors.Info;
             this.passwordBox.Location = new System.Drawing.Point(12, 78);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '●';
@@ -72,33 +78,39 @@
             // 
             // signInButton
             // 
+            this.signInButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.signInButton.ForeColor = System.Drawing.SystemColors.Info;
             this.signInButton.Location = new System.Drawing.Point(12, 116);
             this.signInButton.Name = "signInButton";
             this.signInButton.Size = new System.Drawing.Size(75, 23);
             this.signInButton.TabIndex = 2;
             this.signInButton.Text = "Sign In";
-            this.signInButton.UseVisualStyleBackColor = true;
+            this.signInButton.UseVisualStyleBackColor = false;
             this.signInButton.Click += new System.EventHandler(this.SignInButton_Click);
             // 
             // cancelButton
             // 
+            this.cancelButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.ForeColor = System.Drawing.SystemColors.Info;
             this.cancelButton.Location = new System.Drawing.Point(134, 116);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.UseVisualStyleBackColor = false;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // signUpButton
             // 
+            this.signUpButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.signUpButton.ForeColor = System.Drawing.SystemColors.Info;
             this.signUpButton.Location = new System.Drawing.Point(72, 151);
             this.signUpButton.Name = "signUpButton";
             this.signUpButton.Size = new System.Drawing.Size(75, 23);
             this.signUpButton.TabIndex = 4;
             this.signUpButton.Text = "Sign Up";
-            this.signUpButton.UseVisualStyleBackColor = true;
+            this.signUpButton.UseVisualStyleBackColor = false;
             this.signUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
             // Login_Form
@@ -106,6 +118,7 @@
             this.AcceptButton = this.signInButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(221, 186);
             this.ControlBox = false;

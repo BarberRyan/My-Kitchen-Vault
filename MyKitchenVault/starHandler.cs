@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyKitchenVault
 {
-    internal class starHandler
+    internal class StarHandler
     {
+        /// <summary>
+        /// Converts decimal rating into an array of index numbers to display and take ratings
+        /// </summary>
+        /// <param name="rating">Rating as a decimal between 0 and 5</param>
+        /// <returns>Array of index numbers, each element represents one star</returns>
         public static int[] SetStars(decimal rating)
         {
             int[] output = new int[5];

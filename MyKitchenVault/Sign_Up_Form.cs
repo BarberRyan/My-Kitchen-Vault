@@ -24,9 +24,9 @@ namespace MyKitchenVault
         }
 
         /// <summary>
-        /// Cancels and closes the sign up form (fires when the "cancel" button is clicked)
+        /// Cancels and closes the sign up form (fired when the "cancel" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -38,7 +38,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Attempts to enter user into the database and gives feedback to the user (fired when the "sign up" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void SignUpButton_Click(object sender, EventArgs e)
         {
@@ -63,9 +63,9 @@ namespace MyKitchenVault
         }
 
         /// <summary>
-        /// Validates the text in the form's textboxes (fires when the text is changed in any textbox)
+        /// Validates the text in the form's textboxes (fired when the text is changed in any textbox)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void Any_Text_Changed(object sender, EventArgs e)
         {
