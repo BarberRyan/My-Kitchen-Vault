@@ -64,6 +64,12 @@
     <Compile Include="FractionUtil.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="FilterStyle.cs" />
+    <Compile Include="IngredientListItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngredientListItem.Designer.cs">
+      <DependentUpon>IngredientListItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mkv_Create_Bistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Filters_Form.resx">
       <DependentUpon>Filters_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngredientListItem.resx">
+      <DependentUpon>IngredientListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mkv_Create_Bistro.resx">
       <DependentUpon>Mkv_Create_Bistro.cs</DependentUpon>

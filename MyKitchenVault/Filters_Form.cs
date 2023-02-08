@@ -34,7 +34,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Adds tag to include list (fired when "include tag" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void IncludeButton_Click(object sender, EventArgs e)
         {
@@ -70,7 +70,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Removes tag from include list or shows "no tag selected error" (fired when the "remove selected" button is pressed under the include list)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void IncludeRemoveButton_Click(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Removes "no tag selected" error label on the include list (fired when a tag is selected)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void IncludeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,7 +108,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Simulates clicking "include tag" button when enter is pressed in the include text box
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void IncludeBoxEnter(object sender, KeyEventArgs e)
         {
@@ -121,7 +121,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Adds tag to exclude list (fired when "exclude tag" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void ExcludeButton_Click(object sender, EventArgs e)
         {
@@ -149,7 +149,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Removes tag from exclude list or shows "no tag selected error" (fired when the "remove selected" button is pressed under the exclude list)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void ExcludeRemoveButton_Click(object sender, EventArgs e)
         {
@@ -169,7 +169,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Removes "no tag selected" error label on the exclude list (fired when a tag is selected)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void ExcludeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -179,7 +179,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Simulates clicking "exclude tag" button when enter is pressed in the exclude text box
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void ExcludeBoxEnter(object sender, KeyEventArgs e)
         {
@@ -192,7 +192,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Submits form and returns filter data (fired when accept button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void AcceptButton_Click(object sender, EventArgs e)
         {
@@ -224,7 +224,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Cancels the form and clears filter data (fired when cancel button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -236,8 +236,12 @@ namespace MyKitchenVault
             }
         }
 
-
-        private void RatingBox1_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Sets rating filter to match the selected index of the combobox (fired when the ratingBox index changes)
+        /// </summary>
+        /// <param name="sender">Object that fired the event</param>
+        /// <param name="e">Event arguments</param>
+        private void RatingBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             rating = ratingBox.SelectedIndex;
         }
@@ -245,7 +249,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Updates selected filter style (fired when a radio button is selected)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void RadioButtonSelected(object sender, EventArgs e)
         {

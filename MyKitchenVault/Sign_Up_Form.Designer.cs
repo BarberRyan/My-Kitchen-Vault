@@ -41,6 +41,8 @@
             // 
             // usernameBox
             // 
+            this.usernameBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.usernameBox.ForeColor = System.Drawing.SystemColors.Info;
             this.usernameBox.Location = new System.Drawing.Point(12, 24);
             this.usernameBox.Name = "usernameBox";
             this.usernameBox.Size = new System.Drawing.Size(156, 20);
@@ -50,6 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Info;
             this.label1.Location = new System.Drawing.Point(9, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
@@ -59,6 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Info;
             this.label2.Location = new System.Drawing.Point(9, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
@@ -67,6 +71,8 @@
             // 
             // passwordBox1
             // 
+            this.passwordBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.passwordBox1.ForeColor = System.Drawing.SystemColors.Info;
             this.passwordBox1.Location = new System.Drawing.Point(12, 63);
             this.passwordBox1.Name = "passwordBox1";
             this.passwordBox1.PasswordChar = '●';
@@ -77,6 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.Info;
             this.label3.Location = new System.Drawing.Point(9, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
@@ -85,6 +92,8 @@
             // 
             // passwordBox2
             // 
+            this.passwordBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.passwordBox2.ForeColor = System.Drawing.SystemColors.Info;
             this.passwordBox2.Location = new System.Drawing.Point(12, 104);
             this.passwordBox2.Name = "passwordBox2";
             this.passwordBox2.PasswordChar = '●';
@@ -94,28 +103,32 @@
             // 
             // signUpButton
             // 
+            this.signUpButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.signUpButton.ForeColor = System.Drawing.SystemColors.Info;
             this.signUpButton.Location = new System.Drawing.Point(48, 207);
             this.signUpButton.Name = "signUpButton";
             this.signUpButton.Size = new System.Drawing.Size(75, 23);
             this.signUpButton.TabIndex = 6;
             this.signUpButton.Text = "Sign Up";
-            this.signUpButton.UseVisualStyleBackColor = true;
+            this.signUpButton.UseVisualStyleBackColor = false;
             this.signUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
             // cancelButton
             // 
+            this.cancelButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.ForeColor = System.Drawing.SystemColors.Info;
             this.cancelButton.Location = new System.Drawing.Point(48, 236);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.UseVisualStyleBackColor = false;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // errorLabel
             // 
-            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.ForeColor = System.Drawing.Color.IndianRed;
             this.errorLabel.Location = new System.Drawing.Point(12, 127);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(156, 77);
@@ -129,6 +142,7 @@
             this.AcceptButton = this.signUpButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(182, 276);
             this.ControlBox = false;

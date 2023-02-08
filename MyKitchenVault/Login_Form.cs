@@ -23,7 +23,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Cancels and closes login form (fired when the "cancel" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Attempts to sign user in with given credentials (fired when the "sign in" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void SignInButton_Click(object sender, EventArgs e)
         {
@@ -58,9 +58,9 @@ namespace MyKitchenVault
         }
 
         /// <summary>
-        /// Opens "sign up" form (fires when the "sign up" button is clicked)
+        /// Opens "sign up" form (fired when the "sign up" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void SignUpButton_Click(object sender, EventArgs e)
         {

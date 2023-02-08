@@ -30,15 +30,14 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            //DisableControls();
+            DisableControls();
             GetAutocompleteLists();
-            user = new User("Meoco55", 2);
         }
 
         /// <summary>
         /// Opens login menu (fired when "log in" menu item is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void Log_In_MenuItem_Click(object sender, EventArgs e)
         {
@@ -58,7 +57,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Logs out active user (fired when "log out" menu item is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void LogOutMenuItem_Click(object sender, EventArgs e)
         {
@@ -84,7 +83,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Clears text from search box (fired when search box is clicked) 
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void SearchBox_Click(object sender, EventArgs e)
         {
@@ -94,7 +93,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Prompts user to ask if they want to close the application (fired when the application is attempting to be closed)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void Mkv_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -105,7 +104,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Clears search and filter data from the form (fired when the "clear" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -121,7 +120,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Opens the filter form and sets filter information on accepting (fired when "filters" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void FiltersButton_Click(object sender, EventArgs e)
         {
@@ -147,7 +146,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Refreshes autocomplete lists (fired when the "refresh autocomplete lists" menu item is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void RefreshAutocompleteListsMenuItem_Click(object sender, EventArgs e)
         {
@@ -157,7 +156,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Performs search based on selected search and filter criteria (fired when the "search" button is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -188,7 +187,7 @@ namespace MyKitchenVault
         /// <summary>
         /// Opens "add recipe" form (fired when the "add recipe" menu item is clicked)
         /// </summary>
-        /// <param name="sender">Object that fires the event</param>
+        /// <param name="sender">Object that fired the event</param>
         /// <param name="e">Event arguments</param>
         private void AddRecipeMenuItem_Click(object sender, EventArgs e)
         {

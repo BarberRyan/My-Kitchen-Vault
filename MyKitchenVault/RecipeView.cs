@@ -25,6 +25,9 @@ namespace MyKitchenVault
             Populate();
         }
 
+        /// <summary>
+        /// Populates (or repopulates) the form with recipe information
+        /// </summary>
         private void Populate()
         {
             this.Text = $"Viewing \"{InputRecipe.Name}\" by {InputRecipe.UserName}";
@@ -40,6 +43,10 @@ namespace MyKitchenVault
             UpdateStars(InputRecipe.Rating);
         }
 
+        /// <summary>
+        /// Formats the list of ingredient values for display
+        /// </summary>
+        /// <returns>Formatted list of ingredients as a string</returns>
         private string FormatIngr()
         {
             StringBuilder sb = new StringBuilder();
@@ -61,6 +68,10 @@ namespace MyKitchenVault
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Formats the list of tag values for display
+        /// </summary>
+        /// <returns>Formatted list of tags as a string</returns>
         private string FormatTags() 
         {
             StringBuilder sb = new StringBuilder();
@@ -77,9 +88,13 @@ namespace MyKitchenVault
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Sets the star PictureBox image values to match a given rating
+        /// </summary>
+        /// <param name="rating">Rating as a decimal between 0 and 5</param>
         private void UpdateStars(decimal rating)
         {
-            int[] starVals = starHandler.SetStars(rating);
+            int[] starVals = StarHandler.SetStars(rating);
             star1.Image = starList.Images[starVals[0]];
             star2.Image = starList.Images[starVals[1]];
             star3.Image = starList.Images[starVals[2]];
@@ -87,6 +102,10 @@ namespace MyKitchenVault
             star5.Image = starList.Images[starVals[4]];
         }
 
+        /// <summary>
+        /// Sets the star PictureBox image values to match a given configuration
+        /// </summary>
+        /// <param name="setting">Array of index values to determine which star to display</param>
         private void UpdateStars(int[] setting)
         {
             star1.Image = starList.Images[setting[0]];
@@ -96,6 +115,9 @@ namespace MyKitchenVault
             star5.Image = starList.Images[setting[4]];
         }
 
+        /// <summary>
+        /// Sets the values of the two ratings labels to match the pertinent data
+        /// </summary>
         private void UpdateRatings()
         {
             if(InputRecipe.RatingCount > 1)
@@ -116,6 +138,11 @@ namespace MyKitchenVault
             }
         }
         
+        /// <summary>
+        /// Updates the star images based on mouse position above them (fired when the mouse moves over any star)
+        /// </summary>
+        /// <param name="sender">Object that fired the event</param>
+        /// <param name="e">Event arguments</param>
         private void Star_Mouse_Move(object sender, MouseEventArgs e)
         {
             MouseEventArgs me = (MouseEventArgs)e;
@@ -151,7 +178,12 @@ namespace MyKitchenVault
                 star.Image = starList.Images[2];
             }
         }
-        
+
+        /// <summary>
+        /// Updates the star images based on mouse position above them (fired when the mouse moves off any star)
+        /// </summary>
+        /// <param name="sender">Object that fired the event</param>
+        /// <param name="e">Event arguments</param>
         private void Star_Mouse_Leave(object sender, EventArgs e)
         {
             if(this.UserRating > 0.0M)
@@ -164,6 +196,11 @@ namespace MyKitchenVault
             }
         }
 
+        /// <summary>
+        /// Updates the user rating based on which star (and where on the star) is clicked (fired when the user clicks any star)
+        /// </summary>
+        /// <param name="sender">Object that fired the event</param>
+        /// <param name="e">Event arguments</param>
         private void Star_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = (MouseEventArgs)e;
@@ -174,26 +211,26 @@ namespace MyKitchenVault
 
             switch (star)
             {
-                case object s2 when (s2.Equals(star2)):
+                case object s when (s.Equals(star2)):
                     rating = 1.0M;
                     break;
-                case object s3 when (s3.Equals(star3)):
+                case object s when (s.Equals(star3)):
                     rating = 2.0M;
                     break;
-                case object s4 when (s4.Equals(star4)):
+                case object s when (s.Equals(star4)):
                     rating = 3.0M;
                     break;
-                case object s5 when (s5.Equals(star5)):
+                case object s when (s.Equals(star5)):
                     rating = 4.0M;
                     break;
 
             }
 
-            if (coords.X <= star.Width / 2 && star.Image != starList.Images[1])
+            if (coords.X <= star.Width / 2)
             {
                 rating += 0.5M;
             }
-            else if (coords.X > star.Width / 2 && star.Image != starList.Images[2])
+            else if (coords.X > star.Width / 2)
             {
                 rating += 1.0M;
             }
