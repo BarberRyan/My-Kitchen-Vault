@@ -55,6 +55,7 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB_Interface.cs" />
+    <Compile Include="SettingsHandler.cs" />
     <Compile Include="Filters_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +106,12 @@
       <DependentUpon>Sign_Up_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="starHandler.cs" />
+    <Compile Include="TagSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagSelector.Designer.cs">
+      <DependentUpon>TagSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Filters_Form.resx">
       <DependentUpon>Filters_Form.cs</DependentUpon>
@@ -135,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sign_Up_Form.resx">
       <DependentUpon>Sign_Up_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagSelector.resx">
+      <DependentUpon>TagSelector.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="DataSet1.xsc">

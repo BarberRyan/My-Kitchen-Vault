@@ -41,9 +41,13 @@
             this.descriptionBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ingredientBox = new System.Windows.Forms.TextBox();
-            this.clearButton = new System.Windows.Forms.TextBox();
+            this.tagBox = new System.Windows.Forms.TextBox();
             this.editIngredientsButton = new System.Windows.Forms.Button();
             this.editTagsButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.prepTimeBox = new System.Windows.Forms.TextBox();
+            this.cookTimeBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -146,7 +150,7 @@
             this.instructionsBox.Location = new System.Drawing.Point(275, 117);
             this.instructionsBox.Multiline = true;
             this.instructionsBox.Name = "instructionsBox";
-            this.instructionsBox.Size = new System.Drawing.Size(286, 335);
+            this.instructionsBox.Size = new System.Drawing.Size(286, 231);
             this.instructionsBox.TabIndex = 9;
             // 
             // label5
@@ -170,6 +174,7 @@
             this.descriptionBox.Location = new System.Drawing.Point(42, 238);
             this.descriptionBox.Multiline = true;
             this.descriptionBox.Name = "descriptionBox";
+            this.descriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionBox.Size = new System.Drawing.Size(191, 98);
             this.descriptionBox.TabIndex = 11;
             // 
@@ -195,20 +200,22 @@
             this.ingredientBox.Multiline = true;
             this.ingredientBox.Name = "ingredientBox";
             this.ingredientBox.ReadOnly = true;
+            this.ingredientBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ingredientBox.Size = new System.Drawing.Size(191, 102);
             this.ingredientBox.TabIndex = 13;
             // 
-            // clearButton
+            // tagBox
             // 
-            this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
-            this.clearButton.Font = new System.Drawing.Font("Lucida Sans", 14.25F);
-            this.clearButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.clearButton.Location = new System.Drawing.Point(629, 354);
-            this.clearButton.Multiline = true;
-            this.clearButton.Name = "clearButton";
-            this.clearButton.ReadOnly = true;
-            this.clearButton.Size = new System.Drawing.Size(191, 98);
-            this.clearButton.TabIndex = 14;
+            this.tagBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.tagBox.Font = new System.Drawing.Font("Lucida Sans", 14.25F);
+            this.tagBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.tagBox.Location = new System.Drawing.Point(629, 354);
+            this.tagBox.Multiline = true;
+            this.tagBox.Name = "tagBox";
+            this.tagBox.ReadOnly = true;
+            this.tagBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tagBox.Size = new System.Drawing.Size(191, 98);
+            this.tagBox.TabIndex = 14;
             // 
             // editIngredientsButton
             // 
@@ -234,6 +241,55 @@
             this.editTagsButton.TabIndex = 16;
             this.editTagsButton.Text = "Edit Tags";
             this.editTagsButton.UseVisualStyleBackColor = false;
+            this.editTagsButton.Click += new System.EventHandler(this.EditTagsButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label7.Font = new System.Drawing.Font("Lucida Handwriting", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.Info;
+            this.label7.Location = new System.Drawing.Point(275, 354);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(136, 47);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Prep Time";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label8.Font = new System.Drawing.Font("Lucida Handwriting", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Info;
+            this.label8.Location = new System.Drawing.Point(415, 354);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 47);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Cook Time";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // prepTimeBox
+            // 
+            this.prepTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.prepTimeBox.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prepTimeBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.prepTimeBox.Location = new System.Drawing.Point(275, 415);
+            this.prepTimeBox.Margin = new System.Windows.Forms.Padding(2);
+            this.prepTimeBox.Name = "prepTimeBox";
+            this.prepTimeBox.Size = new System.Drawing.Size(136, 30);
+            this.prepTimeBox.TabIndex = 19;
+            // 
+            // cookTimeBox
+            // 
+            this.cookTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(18)))), ((int)(((byte)(10)))));
+            this.cookTimeBox.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cookTimeBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.cookTimeBox.Location = new System.Drawing.Point(415, 415);
+            this.cookTimeBox.Margin = new System.Windows.Forms.Padding(2);
+            this.cookTimeBox.Name = "cookTimeBox";
+            this.cookTimeBox.Size = new System.Drawing.Size(146, 30);
+            this.cookTimeBox.TabIndex = 20;
             // 
             // CreateRecipeForm
             // 
@@ -242,9 +298,13 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(898, 477);
+            this.Controls.Add(this.cookTimeBox);
+            this.Controls.Add(this.prepTimeBox);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.editTagsButton);
             this.Controls.Add(this.editIngredientsButton);
-            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.tagBox);
             this.Controls.Add(this.ingredientBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.descriptionBox);
@@ -280,8 +340,12 @@
         private System.Windows.Forms.TextBox descriptionBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox ingredientBox;
-        private System.Windows.Forms.TextBox clearButton;
+        private System.Windows.Forms.TextBox tagBox;
         private System.Windows.Forms.Button editIngredientsButton;
         private System.Windows.Forms.Button editTagsButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox prepTimeBox;
+        private System.Windows.Forms.TextBox cookTimeBox;
     }
 }

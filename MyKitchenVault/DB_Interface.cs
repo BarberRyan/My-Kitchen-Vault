@@ -283,6 +283,28 @@ namespace MyKitchenVault
             return Search(search, include, exclude, rating, filterStyle);
         }
 
+        public static List<(string, string, int)> GetFavs(string favlist)
+        {
+            List<(string, string, int)> results = new List<(string, string, int)>();
+            using (SqlConnection c = new SqlConnection(user_cs))
+            {
+                SqlCommand command = new SqlCommand("EXEC search @idList=@favList", c);
+                command.Parameters.AddWithValue("@favList", favlist);
+                
+                c.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string name = reader.GetString(0);
+                    string desc = reader.GetString(1);
+                    int id = reader.GetInt32(2);
+
+                    results.Add((name, desc, id));
+                }
+            }
+            return results;
+        }
+
         public static (Recipe, decimal) GetRecipe(int recipeID)
         {
             string recipeName = "";

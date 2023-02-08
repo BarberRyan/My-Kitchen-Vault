@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +16,12 @@ namespace MyKitchenVault
     {
         private Recipe InputRecipe { get; set; }
         private decimal UserRating { get; set; }
-        private int CurRecipeID { get; set; }
+        private bool IsFav { get; set; }
 
         public RecipeView((Recipe, decimal) inputData)
         {
             InputRecipe = inputData.Item1;
             UserRating = inputData.Item2;
-            CurRecipeID = InputRecipe.RecipeID;
             InitializeComponent();
             Populate();
         }
@@ -38,6 +39,17 @@ namespace MyKitchenVault
             ingrLabel.Text = FormatIngr() + "\n\n";
             instLabel.Text = InputRecipe.Instructions + "\n\n\n";
             tagLabel.Text = FormatTags();
+            
+            if(SettingsHandler.IsFav(Mkv_Main.user.GetUserID(), InputRecipe.RecipeID))
+            {
+                favStar.Image = starList.Images[2];
+                IsFav = true;
+            }
+            else
+            {
+                favStar.Image = starList.Images[0];
+                IsFav = false;
+            }
 
             UpdateRatings();
             UpdateStars(InputRecipe.Rating);
@@ -240,6 +252,59 @@ namespace MyKitchenVault
             this.InputRecipe = newRecipe.Item1;
             this.UserRating = newRecipe.Item2;
             Populate();
+        }
+
+        private void FavStar_Click(object sender, EventArgs e)
+        {
+            if (IsFav)
+            {
+                favStar.Image = starList.Images[0];
+                SettingsHandler.RemoveFav(Mkv_Main.user.GetUserID(), InputRecipe.RecipeID);
+                IsFav = false;
+            }           
+            else
+            {
+                favStar.Image = starList.Images[2];
+                SettingsHandler.AddFav(Mkv_Main.user.GetUserID(), InputRecipe.RecipeID);
+                IsFav = true;
+            }
+        }
+
+        private void FavStar_Mouse_Move(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void FavStar_Mouse_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"##### {InputRecipe.Name.ToUpper()} BY {InputRecipe.UserName.ToUpper()} #####\n");
+            sb.AppendLine("##### DESCRIPTION #####");
+            sb.AppendLine(InputRecipe.Description + "\n");
+            sb.AppendLine("##### INGREDIENTS #####");
+            sb.AppendLine(FormatIngr());
+            sb.AppendLine("##### INSTRUCTIONS #####");
+            sb.AppendLine(InputRecipe.Instructions + "\n");
+            sb.AppendLine("##### TAGS #####");
+            sb.AppendLine(FormatTags());
+
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Title = "Select output file:";
+            saveDialog.Filter = ".txt file|*.txt";
+            saveDialog.FileName = $"{InputRecipe.Name} by {InputRecipe.UserName}.txt";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter writer = File.CreateText(saveDialog.FileName))
+                {
+                    writer.Write(sb.ToString());
+                }
+            }
         }
     }
 }

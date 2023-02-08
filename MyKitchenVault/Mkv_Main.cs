@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SH = MyKitchenVault.SettingsHandler;
 
 namespace MyKitchenVault
 {
@@ -30,8 +31,9 @@ namespace MyKitchenVault
         public Mkv_Main()
         {
             InitializeComponent();
-            DisableControls();
+            //DisableControls();
             GetAutocompleteLists();
+            user = new User("Meoco55", 2);
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace MyKitchenVault
                     includeTags = form.IncludeTags;
                     excludeTags = form.ExcludeTags;
                     filterStyle = form.FilterStyle;
-                    rating = form.rating;
+                    rating = form.Rating;
 
                     CheckForFilters();
                 }
@@ -160,6 +162,24 @@ namespace MyKitchenVault
         /// <param name="e">Event arguments</param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            List<string> excludeList = excludeTags;
+
+            if(SH.GetSettings(user.GetUserID()).Item2.Length > 0)
+            {
+                Console.WriteLine(SH.GetSettings(user.GetUserID()).Item2);
+                List<string> blacklist = SH.StringToList(SH.GetSettings(user.GetUserID()).Item2);
+
+
+                if(excludeList == null)
+                {
+                    excludeList = blacklist;
+                }
+                else
+                {
+                    excludeList.AddRange(blacklist);
+                }
+            }
+
             recipeBox.Items.Clear();
 
             string search = null;
@@ -169,7 +189,7 @@ namespace MyKitchenVault
                 search = searchBox.Text;
             }
 
-            List<(string, string, int)> searchResults = DB_Interface.Search(search, includeTags, excludeTags, rating, filterStyle);
+            List<(string, string, int)> searchResults = DB_Interface.Search(search, includeTags, excludeList, rating, filterStyle);
 
             if(searchResults.Count > 0)
             {
@@ -193,11 +213,7 @@ namespace MyKitchenVault
         {
             using (var form = new CreateRecipeForm())
             {
-                var results = form.ShowDialog();
-                if (results == DialogResult.OK)
-                {
-
-                }
+                form.ShowDialog();
             }
         }
 
@@ -280,14 +296,56 @@ namespace MyKitchenVault
         {
             if(recipeBox.SelectedItems.Count > 0)
             {
-                string item = recipeBox.SelectedItem.ToString();
-                int startIndex = item.LastIndexOf('(') + 1;
-                int length = item.LastIndexOf(')') - startIndex;
-                string numberString = item.Substring(startIndex, length);
-                int number = int.Parse(numberString);
+                try
+                {
+                    string item = recipeBox.SelectedItem.ToString();
+                    int startIndex = item.LastIndexOf('(') + 1;
+                    int length = item.LastIndexOf(')') - startIndex;
+                    string numberString = item.Substring(startIndex, length);
+                    int number = int.Parse(numberString);
 
-                RecipeView recipe = new RecipeView(DB_Interface.GetRecipe(number));
-                recipe.Show();
+                    RecipeView recipe = new RecipeView(DB_Interface.GetRecipe(number));
+                    recipe.Show();
+                }
+                catch { }
+            }
+        }
+
+        private void FavoritesMenuItem_Click(object sender, EventArgs e)
+        {
+            List<(string, string, int)> searchResults = DB_Interface.GetFavs(SH.GetSettings(user.GetUserID()).Item1);
+            
+            if (searchResults.Count > 0)
+            {
+                recipeBox.Items.Clear();
+                foreach (var item in searchResults)
+                {
+                    recipeBox.Items.Add($"{item.Item1} - {item.Item2} ({item.Item3})");
+                }
+            }
+            else
+            {
+                recipeBox.Items.Clear();
+                recipeBox.Items.Add("NO FAVORITES FOUND");
+            }
+        }
+
+        private void IngredientBlacklistMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new TagSelector("Blacklist", SH.StringToList(SH.GetSettings(user.GetUserID()).Item2)))
+            {
+                var results = form.ShowDialog();
+                if(results == DialogResult.OK)
+                {
+                    if(form.Current != null && form.Current.Count > 0)
+                    {
+                        SH.AddBL(user.GetUserID(), form.Current);
+                    }
+                    if(form.Removed != null && form.Removed.Count > 0)
+                    {
+                        SH.RemoveBL(user.GetUserID(), form.Removed);
+                    }
+                }
             }
         }
     }

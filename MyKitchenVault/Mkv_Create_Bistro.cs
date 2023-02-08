@@ -13,6 +13,8 @@ namespace MyKitchenVault
     public partial class CreateRecipeForm: Form
     {
         public Recipe CurrentRecipe { get; set; }
+        private List<string> CurrentTags { get; set; }
+        private List<Ingredient> CurrentIngs { get; set; }
 
 
         public CreateRecipeForm()
@@ -51,6 +53,34 @@ namespace MyKitchenVault
         private void EditIngredientsButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BuildRecipe()
+        {
+            CurrentRecipe.Name = nameBox.Text;
+            CurrentRecipe.Description = descriptionBox.Text;
+            CurrentRecipe.Instructions = instructionsBox.Text;
+            Int32.TryParse(cookTimeBox.Text, out int cookTime);
+            CurrentRecipe.CookTime = cookTime;
+            Int32.TryParse(prepTimeBox.Text, out int prepTime);
+            CurrentRecipe.PrepTime = prepTime;
+            CurrentRecipe.Tags = CurrentTags;
+        }
+
+        private void EditTagsButton_Click(object sender, EventArgs e)
+        {
+            using (var form = new TagSelector("SelectTags", CurrentTags))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    CurrentTags = form.Current;
+                    foreach (string tag in CurrentTags)
+                    {
+                        tagBox.AppendText(tag + "\n");
+                    }
+                }
+            }
         }
     }
 }

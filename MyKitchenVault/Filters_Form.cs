@@ -9,7 +9,7 @@ namespace MyKitchenVault
     {
         public List<string> IncludeTags { get; set; }
         public List<string> ExcludeTags { get; set; }
-        public int rating { get; set; }
+        public int Rating { get; set; }
         public FilterStyle FilterStyle { get; set; }
         public List<string> tagList = Mkv_Main.ac_all_tags;
         
@@ -243,7 +243,7 @@ namespace MyKitchenVault
         /// <param name="e">Event arguments</param>
         private void RatingBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rating = ratingBox.SelectedIndex;
+            Rating = ratingBox.SelectedIndex;
         }
 
         /// <summary>

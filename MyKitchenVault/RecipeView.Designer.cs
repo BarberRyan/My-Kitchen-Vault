@@ -40,18 +40,22 @@ namespace MyKitchenVault
             this.ingrLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.userRatingLabel = new System.Windows.Forms.Label();
+            this.ratingLabel = new System.Windows.Forms.Label();
             this.star5 = new System.Windows.Forms.PictureBox();
             this.star4 = new System.Windows.Forms.PictureBox();
             this.star3 = new System.Windows.Forms.PictureBox();
             this.star2 = new System.Windows.Forms.PictureBox();
             this.star1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.favStar = new System.Windows.Forms.PictureBox();
             this.ratingPanel = new System.Windows.Forms.Label();
             this.instLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tagLabel = new System.Windows.Forms.Label();
             this.starList = new System.Windows.Forms.ImageList(this.components);
-            this.ratingLabel = new System.Windows.Forms.Label();
-            this.userRatingLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.star5)).BeginInit();
@@ -59,6 +63,8 @@ namespace MyKitchenVault
             ((System.ComponentModel.ISupportInitialize)(this.star3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.favStar)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -91,7 +97,7 @@ namespace MyKitchenVault
             this.descTitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.descTitleLabel.Font = new System.Drawing.Font("Lucida Handwriting", 14F);
             this.descTitleLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.descTitleLabel.Location = new System.Drawing.Point(3, 98);
+            this.descTitleLabel.Location = new System.Drawing.Point(3, 144);
             this.descTitleLabel.Name = "descTitleLabel";
             this.descTitleLabel.Size = new System.Drawing.Size(130, 24);
             this.descTitleLabel.TabIndex = 2;
@@ -103,7 +109,7 @@ namespace MyKitchenVault
             this.descLabel.BackColor = System.Drawing.Color.Transparent;
             this.descLabel.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.descLabel.Location = new System.Drawing.Point(3, 122);
+            this.descLabel.Location = new System.Drawing.Point(3, 168);
             this.descLabel.Name = "descLabel";
             this.descLabel.Size = new System.Drawing.Size(80, 15);
             this.descLabel.TabIndex = 3;
@@ -115,7 +121,7 @@ namespace MyKitchenVault
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Lucida Handwriting", 14F);
             this.label2.ForeColor = System.Drawing.SystemColors.Info;
-            this.label2.Location = new System.Drawing.Point(3, 137);
+            this.label2.Location = new System.Drawing.Point(3, 183);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 24);
             this.label2.TabIndex = 4;
@@ -127,7 +133,7 @@ namespace MyKitchenVault
             this.ingrLabel.BackColor = System.Drawing.Color.Transparent;
             this.ingrLabel.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingrLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.ingrLabel.Location = new System.Drawing.Point(3, 161);
+            this.ingrLabel.Location = new System.Drawing.Point(3, 207);
             this.ingrLabel.Name = "ingrLabel";
             this.ingrLabel.Size = new System.Drawing.Size(78, 15);
             this.ingrLabel.TabIndex = 5;
@@ -144,6 +150,7 @@ namespace MyKitchenVault
             this.flowLayoutPanel1.Controls.Add(this.nameLabel);
             this.flowLayoutPanel1.Controls.Add(this.userLabel);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.descTitleLabel);
             this.flowLayoutPanel1.Controls.Add(this.descLabel);
             this.flowLayoutPanel1.Controls.Add(this.label2);
@@ -175,8 +182,31 @@ namespace MyKitchenVault
             this.panel1.Size = new System.Drawing.Size(527, 40);
             this.panel1.TabIndex = 10;
             // 
+            // userRatingLabel
+            // 
+            this.userRatingLabel.AutoSize = true;
+            this.userRatingLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userRatingLabel.ForeColor = System.Drawing.SystemColors.Info;
+            this.userRatingLabel.Location = new System.Drawing.Point(200, 22);
+            this.userRatingLabel.Name = "userRatingLabel";
+            this.userRatingLabel.Size = new System.Drawing.Size(96, 18);
+            this.userRatingLabel.TabIndex = 17;
+            this.userRatingLabel.Text = "User Rating";
+            // 
+            // ratingLabel
+            // 
+            this.ratingLabel.AutoSize = true;
+            this.ratingLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratingLabel.ForeColor = System.Drawing.SystemColors.Info;
+            this.ratingLabel.Location = new System.Drawing.Point(200, 0);
+            this.ratingLabel.Name = "ratingLabel";
+            this.ratingLabel.Size = new System.Drawing.Size(57, 18);
+            this.ratingLabel.TabIndex = 16;
+            this.ratingLabel.Text = "Rating";
+            // 
             // star5
             // 
+            this.star5.BackColor = System.Drawing.Color.Transparent;
             this.star5.Location = new System.Drawing.Point(162, 0);
             this.star5.Name = "star5";
             this.star5.Size = new System.Drawing.Size(40, 40);
@@ -224,11 +254,46 @@ namespace MyKitchenVault
             this.star1.Location = new System.Drawing.Point(6, 0);
             this.star1.Name = "star1";
             this.star1.Size = new System.Drawing.Size(40, 40);
+            this.star1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.star1.TabIndex = 11;
             this.star1.TabStop = false;
             this.star1.Click += new System.EventHandler(this.Star_Click);
             this.star1.MouseLeave += new System.EventHandler(this.Star_Mouse_Leave);
             this.star1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Star_Mouse_Move);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.favStar);
+            this.panel2.Location = new System.Drawing.Point(3, 101);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(527, 40);
+            this.panel2.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Lucida Handwriting", 14F);
+            this.label1.ForeColor = System.Drawing.SystemColors.Info;
+            this.label1.Location = new System.Drawing.Point(43, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Favorite";
+            // 
+            // favStar
+            // 
+            this.favStar.InitialImage = null;
+            this.favStar.Location = new System.Drawing.Point(6, 0);
+            this.favStar.Name = "favStar";
+            this.favStar.Size = new System.Drawing.Size(40, 40);
+            this.favStar.TabIndex = 0;
+            this.favStar.TabStop = false;
+            this.favStar.Click += new System.EventHandler(this.FavStar_Click);
+            this.favStar.MouseLeave += new System.EventHandler(this.FavStar_Mouse_Leave);
+            this.favStar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FavStar_Mouse_Move);
             // 
             // ratingPanel
             // 
@@ -236,7 +301,7 @@ namespace MyKitchenVault
             this.ratingPanel.BackColor = System.Drawing.Color.Transparent;
             this.ratingPanel.Font = new System.Drawing.Font("Lucida Handwriting", 14F);
             this.ratingPanel.ForeColor = System.Drawing.SystemColors.Info;
-            this.ratingPanel.Location = new System.Drawing.Point(3, 176);
+            this.ratingPanel.Location = new System.Drawing.Point(3, 222);
             this.ratingPanel.Name = "ratingPanel";
             this.ratingPanel.Size = new System.Drawing.Size(139, 24);
             this.ratingPanel.TabIndex = 6;
@@ -248,7 +313,7 @@ namespace MyKitchenVault
             this.instLabel.BackColor = System.Drawing.Color.Transparent;
             this.instLabel.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.instLabel.Location = new System.Drawing.Point(3, 200);
+            this.instLabel.Location = new System.Drawing.Point(3, 246);
             this.instLabel.Name = "instLabel";
             this.instLabel.Size = new System.Drawing.Size(82, 15);
             this.instLabel.TabIndex = 7;
@@ -260,7 +325,7 @@ namespace MyKitchenVault
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Lucida Handwriting", 14F);
             this.label4.ForeColor = System.Drawing.SystemColors.Info;
-            this.label4.Location = new System.Drawing.Point(3, 215);
+            this.label4.Location = new System.Drawing.Point(3, 261);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 24);
             this.label4.TabIndex = 8;
@@ -272,7 +337,7 @@ namespace MyKitchenVault
             this.tagLabel.BackColor = System.Drawing.Color.Transparent;
             this.tagLabel.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tagLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.tagLabel.Location = new System.Drawing.Point(3, 239);
+            this.tagLabel.Location = new System.Drawing.Point(3, 285);
             this.tagLabel.Name = "tagLabel";
             this.tagLabel.Size = new System.Drawing.Size(36, 15);
             this.tagLabel.TabIndex = 9;
@@ -286,27 +351,18 @@ namespace MyKitchenVault
             this.starList.Images.SetKeyName(1, "half.png");
             this.starList.Images.SetKeyName(2, "whole.png");
             // 
-            // ratingLabel
+            // button1
             // 
-            this.ratingLabel.AutoSize = true;
-            this.ratingLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ratingLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.ratingLabel.Location = new System.Drawing.Point(200, 0);
-            this.ratingLabel.Name = "ratingLabel";
-            this.ratingLabel.Size = new System.Drawing.Size(57, 18);
-            this.ratingLabel.TabIndex = 16;
-            this.ratingLabel.Text = "Rating";
-            // 
-            // userRatingLabel
-            // 
-            this.userRatingLabel.AutoSize = true;
-            this.userRatingLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userRatingLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.userRatingLabel.Location = new System.Drawing.Point(200, 22);
-            this.userRatingLabel.Name = "userRatingLabel";
-            this.userRatingLabel.Size = new System.Drawing.Size(96, 18);
-            this.userRatingLabel.TabIndex = 17;
-            this.userRatingLabel.Text = "User Rating";
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button1.Font = new System.Drawing.Font("Lucida Handwriting", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Info;
+            this.button1.Location = new System.Drawing.Point(162, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 31);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // RecipeView
             // 
@@ -328,6 +384,9 @@ namespace MyKitchenVault
             ((System.ComponentModel.ISupportInitialize)(this.star3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.favStar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,6 +414,10 @@ namespace MyKitchenVault
         private PictureBox star2;
         private Label ratingLabel;
         private Label userRatingLabel;
+        private Panel panel2;
+        private Label label1;
+        private PictureBox favStar;
+        private Button button1;
 
         protected override CreateParams CreateParams
         {

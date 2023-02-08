@@ -180,6 +180,7 @@
             // includeErrorLabel
             // 
             this.includeErrorLabel.AutoSize = true;
+            this.includeErrorLabel.BackColor = System.Drawing.Color.Transparent;
             this.includeErrorLabel.ForeColor = System.Drawing.Color.LightPink;
             this.includeErrorLabel.Location = new System.Drawing.Point(72, 390);
             this.includeErrorLabel.Name = "includeErrorLabel";
@@ -229,6 +230,7 @@
             // excludeErrorLabel
             // 
             this.excludeErrorLabel.AutoSize = true;
+            this.excludeErrorLabel.BackColor = System.Drawing.Color.Transparent;
             this.excludeErrorLabel.ForeColor = System.Drawing.Color.LightPink;
             this.excludeErrorLabel.Location = new System.Drawing.Point(443, 390);
             this.excludeErrorLabel.Name = "excludeErrorLabel";

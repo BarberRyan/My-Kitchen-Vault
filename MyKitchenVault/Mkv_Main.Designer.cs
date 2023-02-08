@@ -166,6 +166,7 @@ namespace MyKitchenVault
             this.FavoritesMenuItem.Name = "FavoritesMenuItem";
             this.FavoritesMenuItem.Size = new System.Drawing.Size(185, 26);
             this.FavoritesMenuItem.Text = "Favorites";
+            this.FavoritesMenuItem.Click += new System.EventHandler(this.FavoritesMenuItem_Click);
             // 
             // AddRecipeMenuItem
             // 
@@ -193,6 +194,7 @@ namespace MyKitchenVault
             this.IngredientBlacklistMenuItem.Name = "IngredientBlacklistMenuItem";
             this.IngredientBlacklistMenuItem.Size = new System.Drawing.Size(315, 26);
             this.IngredientBlacklistMenuItem.Text = "Ingredient  Blacklist";
+            this.IngredientBlacklistMenuItem.Click += new System.EventHandler(this.IngredientBlacklistMenuItem_Click);
             // 
             // refreshAutocompleteListsMenuItem
             // 
@@ -209,9 +211,9 @@ namespace MyKitchenVault
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UsernameLabel.BackColor = System.Drawing.Color.Transparent;
             this.UsernameLabel.ForeColor = System.Drawing.SystemColors.Window;
-            this.UsernameLabel.Location = new System.Drawing.Point(311, 145);
+            this.UsernameLabel.Location = new System.Drawing.Point(329, 145);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(381, 13);
+            this.UsernameLabel.Size = new System.Drawing.Size(344, 13);
             this.UsernameLabel.TabIndex = 9;
             this.UsernameLabel.Text = "(Not signed in)";
             this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -288,6 +290,7 @@ namespace MyKitchenVault
             this.recipeBox.Name = "recipeBox";
             this.recipeBox.Size = new System.Drawing.Size(314, 130);
             this.recipeBox.TabIndex = 16;
+            this.recipeBox.DoubleClick += new System.EventHandler(this.SelectButton_Click);
             // 
             // filterStatusLabel
             // 
