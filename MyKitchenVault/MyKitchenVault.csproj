@@ -49,84 +49,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DB_Interface.cs" />
-    <Compile Include="SettingsHandler.cs" />
-    <Compile Include="Filters_Form.cs">
+    <Compile Include="Enum_RecipeStatus.cs" />
+    <Compile Include="Util_DBInterface.cs" />
+    <Compile Include="MKV_IngredientSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Filters_Form.Designer.cs">
-      <DependentUpon>Filters_Form.cs</DependentUpon>
+    <Compile Include="MKV_IngredientSelectorForm.Designer.cs">
+      <DependentUpon>MKV_IngredientSelectorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FractionUtil.cs" />
-    <Compile Include="Ingredient.cs" />
-    <Compile Include="FilterStyle.cs" />
-    <Compile Include="IngredientListItem.cs">
+    <Compile Include="Util_SettingsHandler.cs" />
+    <Compile Include="MKV_FiltersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IngredientListItem.Designer.cs">
-      <DependentUpon>IngredientListItem.cs</DependentUpon>
+    <Compile Include="MKV_FiltersForm.Designer.cs">
+      <DependentUpon>MKV_FiltersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mkv_Create_Bistro.cs">
+    <Compile Include="Util_FractionConverter.cs" />
+    <Compile Include="Obj_Ingredient.cs" />
+    <Compile Include="Enum_FilterStyle.cs" />
+    <Compile Include="MKV_IngredientListItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mkv_Create_Bistro.Designer.cs">
-      <DependentUpon>Mkv_Create_Bistro.cs</DependentUpon>
+    <Compile Include="MKV_IngredientListItemForm.Designer.cs">
+      <DependentUpon>MKV_IngredientListItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mkv_Main.cs">
+    <Compile Include="MKV_CreateRecipeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mkv_Main.Designer.cs">
-      <DependentUpon>Mkv_Main.cs</DependentUpon>
+    <Compile Include="MKV_CreateRecipeForm.Designer.cs">
+      <DependentUpon>MKV_CreateRecipeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginStatus.cs" />
-    <Compile Include="Login_Form.cs">
+    <Compile Include="MKV_MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login_Form.Designer.cs">
-      <DependentUpon>Login_Form.cs</DependentUpon>
+    <Compile Include="MKV_MainForm.Designer.cs">
+      <DependentUpon>MKV_MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Enum_LoginStatus.cs" />
+    <Compile Include="MKV_LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MKV_LoginForm.Designer.cs">
+      <DependentUpon>MKV_LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main_MyKitchenVault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeView.cs">
+    <Compile Include="Obj_Recipe.cs" />
+    <Compile Include="MKV_RecipeViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecipeView.Designer.cs">
-      <DependentUpon>RecipeView.cs</DependentUpon>
+    <Compile Include="MKV_RecipeViewForm.Designer.cs">
+      <DependentUpon>MKV_RecipeViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sign_Up_Form.cs">
+    <Compile Include="MKV_SignUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sign_Up_Form.Designer.cs">
-      <DependentUpon>Sign_Up_Form.cs</DependentUpon>
+    <Compile Include="MKV_SignUpForm.Designer.cs">
+      <DependentUpon>MKV_SignUpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="starHandler.cs" />
-    <Compile Include="TagSelector.cs">
+    <Compile Include="Util_starHandler.cs" />
+    <Compile Include="MKV_TagSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TagSelector.Designer.cs">
-      <DependentUpon>TagSelector.cs</DependentUpon>
+    <Compile Include="MKV_TagSelectorForm.Designer.cs">
+      <DependentUpon>MKV_TagSelectorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
-    <EmbeddedResource Include="Filters_Form.resx">
-      <DependentUpon>Filters_Form.cs</DependentUpon>
+    <Compile Include="Obj_User.cs" />
+    <EmbeddedResource Include="MKV_FiltersForm.resx">
+      <DependentUpon>MKV_FiltersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IngredientListItem.resx">
-      <DependentUpon>IngredientListItem.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_IngredientListItemForm.resx">
+      <DependentUpon>MKV_IngredientListItemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mkv_Create_Bistro.resx">
-      <DependentUpon>Mkv_Create_Bistro.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_CreateRecipeForm.resx">
+      <DependentUpon>MKV_CreateRecipeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mkv_Main.resx">
-      <DependentUpon>Mkv_Main.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_IngredientSelectorForm.resx">
+      <DependentUpon>MKV_IngredientSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login_Form.resx">
-      <DependentUpon>Login_Form.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_MainForm.resx">
+      <DependentUpon>MKV_MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MKV_LoginForm.resx">
+      <DependentUpon>MKV_LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,27 +142,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RecipeView.resx">
-      <DependentUpon>RecipeView.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_RecipeViewForm.resx">
+      <DependentUpon>MKV_RecipeViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sign_Up_Form.resx">
-      <DependentUpon>Sign_Up_Form.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_SignUpForm.resx">
+      <DependentUpon>MKV_SignUpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TagSelector.resx">
-      <DependentUpon>TagSelector.cs</DependentUpon>
+    <EmbeddedResource Include="MKV_TagSelectorForm.resx">
+      <DependentUpon>MKV_TagSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
