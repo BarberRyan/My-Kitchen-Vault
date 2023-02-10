@@ -172,6 +172,11 @@ namespace MyKitchenVault
             if (CurrentRecipe.Ingredients.Count == 0) statuses.Add(RecipeStatus.BadIngr);
             if (CurrentRecipe.Tags.Count == 0) statuses.Add(RecipeStatus.BadTags);
 
+            if(statuses.Count == 0)
+            {
+                statuses.Add(RecipeStatus.OK);
+            }
+
             return statuses;
         }
 
@@ -186,9 +191,12 @@ namespace MyKitchenVault
 
             foreach(var item in statuses)
             {
-                if (ControlMap[item] == control)
+                if (item != RecipeStatus.OK)
                 {
-                    return new List<RecipeStatus> { item };
+                    if (ControlMap[item] == control)
+                    {
+                        return new List<RecipeStatus> { item };
+                    }
                 }
             }
             return new List<RecipeStatus> { RecipeStatus.OK };
