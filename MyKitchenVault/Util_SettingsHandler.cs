@@ -12,7 +12,10 @@ namespace MyKitchenVault
 {
     internal class Util_SettingsHandler
     {
-        static readonly string settingsPath = Environment.CurrentDirectory.ToString() + "/usersettings.xml";
+        static string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Gods of Code/My Kitchen Vault";
+        static string FilePath = Path.Combine(FolderPath, "usersettings.xml");
+
+
 
         /// <summary>
         /// Adds recipe id to user's favorites
@@ -22,7 +25,7 @@ namespace MyKitchenVault
         public static void AddFav(int userID, int RecipeID)
         {
             CheckSettingsExist(userID);
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement favorites = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("favorites")
@@ -39,7 +42,7 @@ namespace MyKitchenVault
                 favs.Sort();
 
                 favorites.Value = ListToString(favs);
-                doc.Save(settingsPath);
+                doc.Save(FilePath);
             }
 
         }
@@ -52,7 +55,7 @@ namespace MyKitchenVault
         public static void RemoveFav(int userID, int RecipeID)
         {
             CheckSettingsExist(userID);
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement favorites = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("favorites")
@@ -65,7 +68,7 @@ namespace MyKitchenVault
                 favs.Sort();
 
                 favorites.Value = ListToString(favs);
-                doc.Save(settingsPath);
+                doc.Save(FilePath);
             }
         }
 
@@ -78,7 +81,7 @@ namespace MyKitchenVault
         public static bool IsFav(int userID, int RecipeID)
         {
             CheckSettingsExist(userID);
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement favorites = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("favorites")
@@ -109,7 +112,7 @@ namespace MyKitchenVault
         public static void AddBL(int userID, string tag)
         {
             CheckSettingsExist(userID);
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement blacklist = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("blacklist")
@@ -122,7 +125,7 @@ namespace MyKitchenVault
                 bl.Sort();
 
                 blacklist.Value = ListToString(bl);
-                doc.Save(settingsPath);
+                doc.Save(FilePath);
             }
 
         }
@@ -149,7 +152,7 @@ namespace MyKitchenVault
         public static void RemoveBL(int userID, string tag)
         {
             CheckSettingsExist(userID);
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement blacklist = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("blacklist")
@@ -162,7 +165,7 @@ namespace MyKitchenVault
                 bl.Sort();
 
                 blacklist.Value = ListToString(bl);
-                doc.Save(settingsPath);
+                doc.Save(FilePath);
             }
         }
 
@@ -188,13 +191,13 @@ namespace MyKitchenVault
         public static (string, string) GetSettings(int userID)
         {
             CheckSettingsExist(userID);
-            if (!File.Exists(settingsPath))
+            if (!File.Exists(FilePath))
             {
                 CreateUserSettings();
             }
 
             (string, string) output = ("", "");
-            XDocument doc = XDocument.Load(settingsPath);
+            XDocument doc = XDocument.Load(FilePath);
             XElement favorites = doc.Descendants("users").Descendants("user")
                                     .Where(e => e.Attribute("id").Value == userID.ToString())
                                     .Elements("favorites")
@@ -217,9 +220,15 @@ namespace MyKitchenVault
             settings.Indent = true;
             settings.OmitXmlDeclaration = true;
 
-            if (!File.Exists(settingsPath))
+            if (!Directory.Exists(FolderPath))
             {
-                using (XmlWriter writer = XmlWriter.Create(settingsPath, settings))
+                Directory.CreateDirectory(FolderPath);
+            }
+
+
+            if (!File.Exists(FilePath))
+            {
+                using (XmlWriter writer = XmlWriter.Create(FilePath, settings))
                 {
                     writer.WriteStartElement("users");
                     writer.WriteStartElement("user");
@@ -237,14 +246,14 @@ namespace MyKitchenVault
             }
             else
             {
-                XDocument doc = XDocument.Load(settingsPath);
+                XDocument doc = XDocument.Load(FilePath);
                 XElement newUser = new XElement("user",
                     new XAttribute("id", MKV_Main.user.GetUserID().ToString()),
                     new XElement("favorites", ""),
                     new XElement("blacklist", "")
                 );
                 doc.Root.Add(newUser);
-                doc.Save(settingsPath);
+                doc.Save(FilePath);
             }
         }
 
@@ -254,9 +263,9 @@ namespace MyKitchenVault
         /// <param name="userID">ID of user to check</param>
         static void CheckSettingsExist(int userID)
         {
-            if (File.Exists(settingsPath))
+            if (File.Exists(FilePath))
             {
-                XDocument doc = XDocument.Load(settingsPath);
+                XDocument doc = XDocument.Load(FilePath);
                 XElement favorites = doc.Descendants("users").Descendants("user")
                                         .Where(e => e.Attribute("id").Value == userID.ToString())
                                         .Elements("favorites")
